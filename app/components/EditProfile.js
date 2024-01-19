@@ -21,11 +21,39 @@ const db = getFirestore(app);
 
 
 
-const editProfilePage = () => {
+const editProfilePage = (userData) => {
     // Create New Post Page
     var pageData = {
         inner: `
-        <div>hello</div>
+        <ul>
+            <li>
+                <span><img src="./imgs/pp/pp_admin.png" alt="${userData.username}"></span>
+                <span><input type="file"></span>
+            </li>
+            <li>
+                <span>Username</span>
+                <span><input type="text" value="${userData.username}"></span>
+            </li>
+            <li>
+                <span>Email</span>
+                <span><input type="text" value="${userData.email}"></span>
+            </li>
+            <li>
+                <span>Password</span>
+                <span><input type="password" value="${userData.password}"></span>
+            </li>
+            <li>
+                <span>Password Check</span>
+                <span><input type="password" value="${userData.password}"></span>
+            </li>
+            <li>
+                <span>Description</span>
+                <span><input type="text" value="${userData.description}"></span>
+            </li>
+            <li>
+                <button id="saveChangesBtn">Save Changes</button>
+            </li>
+        </ul>
         `,
         class: "editProfile",
     }

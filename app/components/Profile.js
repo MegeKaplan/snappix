@@ -56,7 +56,7 @@ const profilePage = (userData) => {
     setTimeout(() => {
         const editProfileBtn = document.querySelector("#editProfileBtn")
         editProfileBtn.onclick = () => {
-            editProfilePage()
+            editProfilePage(userData)
         }
     }, 500);
 
