@@ -29,7 +29,8 @@ const db = getFirestore(app);
 
 
 // Set Default Page
-homePage()
+import { editProfilePage } from "../components/EditProfile.js";
+editProfilePage()
 
 // isAuthenticed Check
 onAuthStateChanged(auth, async(user) => {

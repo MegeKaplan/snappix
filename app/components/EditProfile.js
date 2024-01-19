@@ -25,10 +25,7 @@ const editProfilePage = () => {
     // Create New Post Page
     var pageData = {
         inner: `
-    <div id="posts">
-        <img src="imgs/post.png" alt="The user hasn't posted anything...">
-        The user hasn't posted anything...
-    </div>
+        <div>hello</div>
         `,
         class: "editProfile",
     }
