@@ -310,11 +310,14 @@ nav {
     border-radius: 0;
   }
 }
-.profile {
+.page {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+}
+
+.profile {
   padding-bottom: 20px;
 }
 .profile .info {
@@ -383,6 +386,44 @@ nav {
 .profile #posts img {
   width: 90%;
   margin-bottom: 15px;
+}
+
+.editProfile ul {
+  padding: 0 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.editProfile ul li {
+  width: 100%;
+  min-height: 60px;
+  border-bottom: #dfe6e9 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.editProfile ul li span {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+}
+.editProfile ul li span:nth-child(1) {
+  width: 30%;
+}
+.editProfile ul li span:nth-child(2) {
+  width: 70%;
+}
+.editProfile ul li span img {
+  width: 150px;
+  height: 150px;
+}
+.editProfile ul li span input {
+  width: 100%;
 }
 
 @media only screen and (max-width: 600px) {
