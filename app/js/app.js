@@ -28,9 +28,8 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-// Set Default Page
+// // Set Default Page
 import { editProfilePage } from "../components/EditProfile.js";
-// editProfilePage()
 
 // isAuthenticed Check
 onAuthStateChanged(auth, async(user) => {
@@ -43,6 +42,9 @@ onAuthStateChanged(auth, async(user) => {
         var userData = docSnap.data()
       
         console.log(userData);
+
+        // Set Default Page
+        editProfilePage(userData)
 
 
         const profileBtn=document.querySelector("#profileBtn")

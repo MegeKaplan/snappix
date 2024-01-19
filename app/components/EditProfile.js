@@ -32,23 +32,23 @@ const editProfilePage = (userData) => {
             </li>
             <li>
                 <span>Username</span>
-                <span><input type="text" value="${userData.username}"></span>
+                <span><input id="newUsername" type="text" value="${userData.username}"></span>
             </li>
             <li>
                 <span>Email</span>
-                <span><input type="text" value="${userData.email}"></span>
+                <span><input id="newEmail" type="text" value="${userData.email}"></span>
             </li>
             <li>
                 <span>Password</span>
-                <span><input type="password" value="${userData.password}"></span>
+                <span><input id="newPassword" type="password" value="${userData.password}"></span>
             </li>
             <li>
                 <span>Password Check</span>
-                <span><input type="password" value="${userData.password}"></span>
+                <span><input id="newPasswordCheck" type="password" value="${userData.password}"></span>
             </li>
             <li>
                 <span>Description</span>
-                <span><input type="text" value="${userData.description}"></span>
+                <span><input id="newDescription" type="text" value="${userData.description}"></span>
             </li>
             <li>
                 <button id="saveChangesBtn">Save Changes</button>
@@ -57,6 +57,38 @@ const editProfilePage = (userData) => {
         `,
         class: "editProfile",
     }
+
+    
+
+
+    // Define save changes function
+    const saveChanges = () => {
+        // Get and set the new user data
+        // Password Validation
+        var newPassword = document.querySelector("#newPassword").value
+        var newPasswordCheck = document.querySelector("#newPasswordCheck").value
+
+        if(newPassword==newPasswordCheck){
+            var updatedUserData = {
+                username: document.querySelector("#newUsername").value,
+                email: document.querySelector("#newEmail").value,
+                password: document.querySelector("#newPassword").value,
+                description: document.querySelector("#newDescription").value,
+            }            
+            console.log(updatedUserData)
+        }else{
+            alert("The passwords you entered do not match! Please try again.")
+        }
+    }
+
+
+    // Save Changes
+    setTimeout(() => {
+        const saveChangesBtn = document.querySelector("#saveChangesBtn")
+        saveChangesBtn.onclick = () => {
+            saveChanges()
+        }
+    }, 500);
 
 
     createPage(pageData)
