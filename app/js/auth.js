@@ -69,18 +69,18 @@ try{
     
                 // Set User Data
                 var userData = {
-                    email:email,
-                    username:username,
-                    password:password,
-                    id:user.uid,
+                    email: email,
+                    username: username,
+                    password: password,
+                    id: user.uid,
                     lastLogin: Date.now(),
-                    followers:[],
-                    following:[],
+                    followers: [],
+                    following: [],
                     posts: [],
                     isVerified:false,
                     isAdmin: false,
                     isDev: false,
-                    ppURL:"pp_default",
+                    profilePictureURL: "profilePicture",
                     description: "",
                 }
     

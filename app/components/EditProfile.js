@@ -2,6 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut, updateProfile, updateEmail, updatePassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
@@ -18,17 +19,23 @@ const auth = getAuth(app);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
+// Create a root reference
+const storage = getStorage();
 
 
 
 const editProfilePage = (userData) => {
+    // Get Profile Picture URL
+    const profilePictureRef = ref(storage, `images/${userData.id}/profilePicture`);
+    console.log(profilePictureRef.fullPath);
+
     // Create New Post Page
     var pageData = {
         inner: `
         <ul>
             <li>
                 <span><img src="./imgs/pp/pp_admin.png" alt="${userData.username}"></span>
-                <span><input type="file"></span>
+                <span><input type="file" id="newProfilePicture"></span>
             </li>
             <li>
                 <span>Username</span>
@@ -58,11 +65,18 @@ const editProfilePage = (userData) => {
         class: "editProfile",
     }
 
-    
 
 
     // Define save changes function
     const saveChanges = async() => {
+        // Upload Profile Picture Tests
+        // Select New Profile Picture
+        const newProfilePicture = document.querySelector("#newProfilePicture").files[0];
+        
+        // Define New Profile Picture Ref
+        const profilePictureRef = ref(storage, `images/${userData.id}/profilePicture`);
+
+
         // Get and set the new user data
         // Password Validation
         var newPassword = document.querySelector("#newPassword").value
@@ -74,8 +88,14 @@ const editProfilePage = (userData) => {
                 email: document.querySelector("#newEmail").value,
                 password: document.querySelector("#newPassword").value,
                 description: document.querySelector("#newDescription").value,
+                // profilePictureURL: "profilePicture",
             }            
             console.log(updatedUserData)
+
+            // Upload new profile picture to storage
+            uploadBytes(profilePictureRef, newProfilePicture).then((snapshot) => {
+                console.log('Uploaded the new profile picture!');
+            });
 
             // Update to firebase
             await updateDoc(doc(db, "users", userData.id), updatedUserData);
@@ -83,7 +103,7 @@ const editProfilePage = (userData) => {
             // Update to auth
             // Update Display Name
             updateProfile(auth.currentUser, {
-                displayName: "Jane Q. User",
+                displayName: userData.username,
             }).then(() => {
                 // Profile updated!
                 // ...
@@ -101,13 +121,13 @@ const editProfilePage = (userData) => {
             });
             const user = auth.currentUser
             // Update Password
-            updatePassword(user, updatedUserData.password).then(() => {
-                // Update successful.
-            }).catch((error) => {
-                // An error occurred
-                console.log(error);
-                // ...
-            });
+            // updatePassword(user, updatedUserData.password).then(() => {
+            //     // Update successful.
+            // }).catch((error) => {
+            //     // An error occurred
+            //     console.log(error);
+            //     // ...
+            // });
 
 
 
