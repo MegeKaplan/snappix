@@ -5,6 +5,7 @@ import { getFirestore, doc, setDoc, updateDoc } from "https://www.gstatic.com/fi
 
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
+import { editProfilePage } from "./EditProfile.js";
 
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
@@ -23,7 +24,6 @@ const db = getFirestore(app);
 
 const profilePage = (userData) => {
     // Create New Post Page
-    var posts = userData.posts
     var pageData = {
         inner: `
     <div class="info">
@@ -56,7 +56,7 @@ const profilePage = (userData) => {
     setTimeout(() => {
         const editProfileBtn = document.querySelector("#editProfileBtn")
         editProfileBtn.onclick = () => {
-            console.log("fdf");
+            editProfilePage()
         }
     }, 500);
 
