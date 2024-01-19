@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signOut, updateProfile, updateEmail, updatePassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // Import Local Modules and Components
@@ -62,7 +62,7 @@ const editProfilePage = (userData) => {
 
 
     // Define save changes function
-    const saveChanges = () => {
+    const saveChanges = async() => {
         // Get and set the new user data
         // Password Validation
         var newPassword = document.querySelector("#newPassword").value
@@ -76,6 +76,41 @@ const editProfilePage = (userData) => {
                 description: document.querySelector("#newDescription").value,
             }            
             console.log(updatedUserData)
+
+            // Update to firebase
+            await updateDoc(doc(db, "users", userData.id), updatedUserData);
+
+            // Update to auth
+            // Update Display Name
+            updateProfile(auth.currentUser, {
+                displayName: "Jane Q. User",
+            }).then(() => {
+                // Profile updated!
+                // ...
+            }).catch((error) => {
+                // An error occurred
+                // ...
+            });
+            // Update Email
+            updateEmail(auth.currentUser, updatedUserData.email).then(() => {
+                // Email updated!
+                // ...
+            }).catch((error) => {
+                // An error occurred
+                // ...
+            });
+            const user = auth.currentUser
+            // Update Password
+            updatePassword(user, updatedUserData.password).then(() => {
+                // Update successful.
+            }).catch((error) => {
+                // An error occurred
+                console.log(error);
+                // ...
+            });
+
+
+
         }else{
             alert("The passwords you entered do not match! Please try again.")
         }
