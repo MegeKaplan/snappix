@@ -23,6 +23,7 @@ const db = getFirestore(app);
 
 const profilePage = (userData) => {
     // Create New Post Page
+    var posts = userData.posts
     var pageData = {
         inner: `
     <div class="info">
@@ -35,9 +36,9 @@ const profilePage = (userData) => {
                 <button id="editProfileBtn">Edit</button>
             </section>
             <section class="center">
-                <a href="#posts" class="posts"><span class="data" id="postCount">5</span> posts</a>
-                <a href="#" class="followers"><span class="data" id="followerCount">84</span> followers</a>
-                <a href="#" class="following"><span class="data" id="followingCount">71</span> following</a>
+                <a href="#posts" class="posts"><span class="data" id="postCount">${Object.keys(userData.posts).length}</span> posts</a>
+                <a href="#" class="followers"><span class="data" id="followerCount">${Object.keys(userData.followers).length}</span> followers</a>
+                <a href="#" class="following"><span class="data" id="followingCount">${Object.keys(userData.following).length}</span> following</a>
             </section>
             <section class="bottom desc description" id="description">${userData.description}</section>
         </div>
@@ -50,6 +51,15 @@ const profilePage = (userData) => {
         `,
         class: "profile",
     }
+
+    // Edit profile button clicked
+    setTimeout(() => {
+        const editProfileBtn = document.querySelector("#editProfileBtn")
+        editProfileBtn.onclick = () => {
+            console.log("fdf");
+        }
+    }, 500);
+
 
     createPage(pageData)
 }

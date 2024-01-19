@@ -76,6 +76,7 @@ try{
                     lastLogin: Date.now(),
                     followers:[],
                     following:[],
+                    posts: [],
                     isVerified:false,
                     isAdmin: false,
                     isDev: false,
