@@ -1,0 +1,108 @@
+@import "./style.scss";
+
+// Auth
+section.auth {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    .block {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        &.left {
+            background-image: url("../imgs/bg_auth.jpg");
+            background-position: center;
+            background-attachment: scroll;
+            background-size: cover;
+        }
+        &.right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .box {
+                padding: 30px;
+                min-width: 38px;
+                .logo {
+                    font-size: 30px;
+                }
+                h2 {
+                    margin: 10px 0 20px 0;
+                }
+                p {
+                    a {
+                        display: contents;
+                    }
+                }
+                form {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    input {
+                        width: 100%;
+                        margin-bottom: 10px;
+                    }
+                    button {
+                        margin: 10px;
+                    }
+                }
+                .error {
+                    margin: 10px;
+                    color: $danger;
+                }
+            }
+        }
+    }
+}
+
+// Responsive
+@media only screen and (max-width: 600px) {
+    body,
+    html {
+        background: none;
+    }
+    section.auth {
+        flex-direction: column;
+        .block {
+            width: 100%;
+            height: 100%;
+            &.left {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -2;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: #000000a4;
+                    z-index: -1;
+                }
+            }
+            &.right {
+                .box {
+                    h2,
+                    p {
+                        color: $text-white;
+                    }
+                    form {
+                        input {
+                            color: $text-white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

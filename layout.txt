@@ -1,0 +1,24 @@
+home:
+    pc:
+        see{
+            nav (left):
+                profile
+                search
+                new post (snap)
+                discover
+                messages
+            storys (center-top)
+            posts (center-center)
+            hashtags (right-top)
+            follow suggestions (right)
+        }
+    phone:
+        see{
+            nav (bottom):
+                profile
+                search
+                new post (snap)
+                discover
+                messages
+            storys (center-top)
+        }

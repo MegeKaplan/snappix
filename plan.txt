@@ -1,0 +1,28 @@
+if isAuth:
+can:
+    see{
+        posts (snaps)
+        likes
+        comments
+        favs
+        pps
+        profiles
+        hashtags
+    }
+    do{
+        create a new post (snap) with hashtag
+        put a like
+        put a comment with hashtag
+        add post to own favourites
+        change own profile
+    }
+else:
+    see{
+        posts (snaps)
+        likes
+        comments
+        favs
+        pps
+        profiles
+        hashtags
+    }
