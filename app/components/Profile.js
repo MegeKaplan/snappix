@@ -28,7 +28,7 @@ const profilePage = (userData) => {
         inner: `
     <div class="info">
         <div class="left">
-            <img id="userPP" src="../app/imgs/pp/pp_admin.png" alt="">
+            <img id="userPP" src="${userData.profilePictureURL}" alt="">
         </div>
         <div class="right">
             <section class="top">

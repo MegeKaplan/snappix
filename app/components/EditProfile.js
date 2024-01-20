@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut, updateProfile, updateEmail, updatePassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signOut, updateProfile, updateEmail, updatePassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
@@ -112,7 +112,7 @@ const editProfilePage = (userData) => {
             }            
             
             // Update to firebase
-            updateDoc(doc(db, "users", userData.id), {updatedUserData});
+            updateDoc(doc(db, "users", userData.id), updatedUserData);
             // console.log(updatedUserData)
 
             // Update to auth
@@ -127,23 +127,25 @@ const editProfilePage = (userData) => {
                 // ...
             });
             
-            // Update Email
-            updateEmail(auth.currentUser, updatedUserData.email).then(() => {
-                // Email updated!
-                // ...
-            }).catch((error) => {
-                // An error occurred
-                // ...
-            });
-            const user = auth.currentUser
-            // Update Password
-            // updatePassword(user, updatedUserData.password).then(() => {
+            // // Update Email
+            // updateEmail(auth.currentUser, updatedUserData.email).then(() => {
+            //     // Email updated!
+            //     // ...
+            // }).catch((error) => {
+            //     // An error occurred
+            //     console.log(error);
+            //     // ...
+            // });
+
+            // // Update Password
+            // updatePassword(auth.currentUser, updatedUserData.password).then(() => {
             //     // Update successful.
             // }).catch((error) => {
             //     // An error occurred
             //     console.log(error);
             //     // ...
             // });
+            
         }else{
             alert("The passwords you entered do not match! Please try again.")
         }
