@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut, updateProfile, updateEmail, updatePassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
@@ -26,10 +26,41 @@ const storage = getStorage();
 
 const editProfilePage = (userData) => {
     // Get Profile Picture URL
-    const profilePictureRef = ref(storage, `images/${userData.id}/profilePicture`);
-    console.log(profilePictureRef.fullPath);
 
-    // Create New Post Page
+    // Profile Picture Ref Ref
+    const profilePictureRef = ref(storage, `images/${userData.id}/profilePicture`);
+
+    // Get Url of Profile Picture
+    const getProfilePictureUrl = () => {
+        getDownloadURL(profilePictureRef)
+        .then(async(profilePictureUrl) => {
+            console.log(profilePictureUrl);
+        })
+        .catch((error) => {
+            // Handle any errors
+        });
+    }
+
+    getProfilePictureUrl()
+
+    // List All
+    // Find all the prefixes and items.
+    // listAll(imagesRef)
+    // .then((res) => {
+    // res.prefixes.forEach((folderRef) => {
+    //     // All the prefixes under listRef.
+    //     // You may call listAll() recursively on them.
+    //     console.log(folderRef);
+    // });
+    // res.items.forEach((itemRef) => {
+    //     // All the items under listRef.
+    //     console.log(itemRef);
+    // });
+    // }).catch((error) => {
+    // // Uh-oh, an error occurred!
+    // });
+
+    // Create Edit Profile Page
     var pageData = {
         inner: `
         <ul>
@@ -76,7 +107,6 @@ const editProfilePage = (userData) => {
         // Define New Profile Picture Ref
         const profilePictureRef = ref(storage, `images/${userData.id}/profilePicture`);
 
-
         // Get and set the new user data
         // Password Validation
         var newPassword = document.querySelector("#newPassword").value
@@ -90,7 +120,7 @@ const editProfilePage = (userData) => {
                 description: document.querySelector("#newDescription").value,
                 // profilePictureURL: "profilePicture",
             }            
-            console.log(updatedUserData)
+            // console.log(updatedUserData)
 
             // Upload new profile picture to storage
             uploadBytes(profilePictureRef, newProfilePicture).then((snapshot) => {
