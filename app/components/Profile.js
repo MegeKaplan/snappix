@@ -56,28 +56,60 @@ const profilePage = (userData) => {
     
     // Show posts of user
     const showPosts = async() => {
-        // Select postsContainer
-        setTimeout(() => {
-            const postsContainer = document.querySelector("#posts")
-            console.log(postsContainer);
-        }, 500);
-
-
-
+        
         // Define add post to container function
         const addPostToContainer = (postData) => {
-            console.log(postData);
+            // Select postsContainer
+            setTimeout(() => {
+                const postsContainer = document.querySelector("#posts")
+
+                // Create new post element
+                var newPostEl = document.createElement("div")
+
+                // Set the innerHTML of new post
+                if(postData.imageURL==null){
+                    newPostEl.innerHTML = `
+                    <div class="post">
+                        <h4>${postData.title}</h4>
+                        <p>${postData.content}</p>
+                    </div>
+                    `
+                }else{
+                    newPostEl.innerHTML = `
+                    <div class="post">
+                        <div class="imgContainer">
+                            <img src="${postData.imageURL}" alt="post">
+                        </div>
+                    </div>
+                    `
+                }
+
+                // Add class to new post element
+                newPostEl.classList.add("post")
+
+                // Add new post to posts container
+                postsContainer.appendChild(newPostEl)
+            }, 500);
         }
 
+
+        // Get all post IDs
+        var postIDs = userData.posts
+
+        // Clear posts container if user has any post
+        if(Object.keys(postIDs).length!=0){
+            setTimeout(() => {
+                const postsContainer = document.querySelector("#posts")
+                // Clear posts container
+                postsContainer.innerHTML = ""
+            }, 500);
+        }
         
 
         const allPosts = await getDocs(collection(db, "posts"));
         allPosts.forEach((post) => {
             // doc.data() is never undefined for query doc snapshots
             // console.log(doc.id, " => ", doc.data());
-
-            // Get all post IDs
-            var postIDs = userData.posts
 
             // Filter user's posts
             postIDs.forEach(postID => {

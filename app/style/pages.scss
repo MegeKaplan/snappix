@@ -1,7 +1,7 @@
 @import "./style.scss";
 
 // Page Default
-.page{
+.page {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -71,42 +71,75 @@
         flex-direction: col; // row
         flex-wrap: wrap;
         width: 100%;
-        height: auto;
-        img {
+        padding-bottom: 50px;
+        img{
             width: 90%;
-            margin-bottom: 15px;
+        }
+        .post {
+            border: $border;
+            width: calc(33vw - 1px);
+            height: calc(33vw - 1px);
+            margin: 1px;
+            cursor: pointer;
+            .imgContainer{
+                width: 100%;
+                height: 100%;
+                margin-bottom: 15px;
+                position: relative;
+                display: flex;align-items: center;justify-content: center;
+                overflow: hidden;
+                &:hover img{
+                    scale: 1.2;
+                    rotate: 10deg;
+                }
+                img {
+                    width: 100%;
+                    height: 100%;
+                    transition: $transition;
+                }
+            }
+            h4,p{
+                margin: 5px;
+            }
         }
     }
     padding-bottom: 20px;
 }
 
 // EditProfile
-.editProfile{
-    ul{
+.editProfile {
+    ul {
         padding: 0 20px;
         width: 100%;
-        display: flex;align-items: center;justify-content: center;flex-direction: column;
-        li{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        li {
             width: 100%;
             min-height: 60px;
             border-bottom: $border;
-            display: flex;align-items: center;justify-content: center;
-            span{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span {
                 width: 50%;
                 height: 100%;
-                display: flex;align-items: center;justify-content: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 padding: 10px 20px;
-                &:nth-child(1){
+                &:nth-child(1) {
                     width: 30%;
                 }
-                &:nth-child(2){
+                &:nth-child(2) {
                     width: 70%;
                 }
-                img{
+                img {
                     width: 150px;
                     height: 150px;
                 }
-                input{
+                input {
                     width: 100%;
                 }
             }
@@ -115,32 +148,39 @@
 }
 
 // EditProfile
-.newPost{
-    ul{
+.newPost {
+    ul {
         padding: 0 20px;
         width: 100%;
-        display: flex;align-items: center;justify-content: center;flex-direction: column;
-        li{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        li {
             width: 100%;
             min-height: 60px;
             border-bottom: $border;
-            display: flex;align-items: center;justify-content: center;
-            span{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span {
                 width: 50%;
                 height: 100%;
-                display: flex;align-items: center;justify-content: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 padding: 10px 20px;
-                &:nth-child(1){
+                &:nth-child(1) {
                     width: 30%;
                 }
-                &:nth-child(2){
+                &:nth-child(2) {
                     width: 70%;
                 }
-                img{
+                img {
                     width: 150px;
                     height: 150px;
                 }
-                input{
+                input {
                     width: 100%;
                 }
             }

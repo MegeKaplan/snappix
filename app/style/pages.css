@@ -162,7 +162,8 @@ main {
 }
 
 input,
-button {
+button,
+textarea {
   width: auto;
   height: 40px;
   min-width: 70px;
@@ -170,6 +171,12 @@ button {
   background: none;
   border: #dfe6e9 1px solid;
   padding: 10px;
+}
+
+textarea {
+  resize: vertical;
+  width: 100%;
+  min-height: 100px;
 }
 
 button {
@@ -381,11 +388,39 @@ nav {
   flex-direction: col;
   flex-wrap: wrap;
   width: 100%;
-  height: auto;
+  padding-bottom: 50px;
 }
 .profile #posts img {
   width: 90%;
+}
+.profile #posts .post {
+  border: #dfe6e9 1px solid;
+  width: calc(33vw - 1px);
+  height: calc(33vw - 1px);
+  margin: 1px;
+  cursor: pointer;
+}
+.profile #posts .post .imgContainer {
+  width: 100%;
+  height: 100%;
   margin-bottom: 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.profile #posts .post .imgContainer:hover img {
+  scale: 1.2;
+  rotate: 10deg;
+}
+.profile #posts .post .imgContainer img {
+  width: 100%;
+  height: 100%;
+  transition: 0.3s;
+}
+.profile #posts .post h4, .profile #posts .post p {
+  margin: 5px;
 }
 
 .editProfile ul {
