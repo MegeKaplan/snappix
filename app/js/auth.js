@@ -80,7 +80,7 @@ try{
                     isVerified:false,
                     isAdmin: false,
                     isDev: false,
-                    profilePictureURL: "profilePicture",
+                    profilePictureURL: "./imgs/pp/pp_default.png",
                     profilePictureName: "profilePicture",
                     description: "",
                 }

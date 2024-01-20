@@ -1,2 +1,5 @@
 - Add box shadow
 - Add change email and password
+- Add validation for registeration
+- Add validation for newPostPage
+- Add image preview for newPostPage

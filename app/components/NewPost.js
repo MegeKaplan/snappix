@@ -29,20 +29,20 @@ const newPostPage = (userData) => {
         inner: `
         <ul>
             <li>
-                <span><img src="./imgs/bg_auth.jpg" alt=""></span>
+                <span><img id="pageImgEl" src="./imgs/bg_auth.jpg" alt=""></span>
                 <span>Add Photo<input id="postImage" type="file"></span>
             </li>
             <li>
                 <span>Post Title</span>
-                <span><input type="text" value=""></span>
+                <span><input id="postTitle" type="text" value=""></span>
             </li>
             <li>
                 <span>Post Content</span>
-                <span><textarea name="" id="" cols="30" rows="10"></textarea></span>
+                <span><textarea id="postContent" name="" cols="30" rows="10"></textarea></span>
             </li>
             <li>
                 <span>Hashtag</span>
-                <span><input type="text" value="# Disabled" disabled></span>
+                <span><input id="postHashtag" type="text" value="# Disabled" disabled></span>
             </li>
             <li>
                 <button id="sendPostBtn">Share This Post</button>
@@ -66,14 +66,14 @@ const newPostPage = (userData) => {
         // New Post
         var newPost = {
             imageURL: null,
-            title: "",
-            content: "",
+            title: document.querySelector("#postTitle").value,
+            content: document.querySelector("#postContent").value,
             id: newPostRef.id,
             sender: userData.id,
             likes: [],
             shares: [],
             favourites: [],
-            hashtags: [],
+            hashtag: "",
             tags: [],
             date: Date.now(),
         }
