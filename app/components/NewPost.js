@@ -65,7 +65,7 @@ const newPostPage = (userData) => {
         const newPostRef = doc(collection(db, "posts"));
         // New Post
         var newPost = {
-            imageURL: undefined,
+            imageURL: null,
             title: "",
             content: "",
             id: newPostRef.id,
@@ -78,16 +78,13 @@ const newPostPage = (userData) => {
             date: Date.now(),
         }
 
-        // Add post to posts/
-        await setDoc(newPostRef, newPost);
-
         // Get user's posts
         // var posts = await getDoc(doc(db, "users", userData.id))
-        var posts = userData.posts.push(newPost)
-        console.log(userData.posts)
+        var posts = userData.posts.push(newPost.id)
 
+        
         // Add user's posts/
-        await updateDoc(doc(db, "users", userData.id), {posts: []});
+        await updateDoc(doc(db, "users", userData.id), {posts: userData.posts});
 
 
 
@@ -98,14 +95,32 @@ const newPostPage = (userData) => {
 
         if(postImage!=undefined){
             // Upload new profile picture to storage
-            // uploadBytes(postImageRef, postImage).then((snapshot) => {
-            //     console.log('Uploaded the new profile picture!');
-            // });
-            console.log('Uploaded the image!', postImage);
+            uploadBytes(postImageRef, postImage).then((snapshot) => {
+                console.log('Uploaded the image!', postImage);
+            });
+
+            // Update imageURL of newPost
+            const imageUrlRef = ref(storage, `posts/${userData.id}/${newPost.id}/image`);
+
+            getDownloadURL(imageUrlRef)
+            .then((imageUrl) => {
+                // Log
+                console.log("IMAGE_URL: ", imageUrl);
+            })
+            .catch((error) => {
+                // Handle any errors
+                console.log(error);
+            });
+
+            // Add post to posts/
+            console.log(newPost);
+            await setDoc(newPostRef, newPost);
         }else{
             console.log("No file chosen.");
+            console.log(newPost);
+            
+            await setDoc(newPostRef, newPost);
         }
-
     }
 
     // Send Post

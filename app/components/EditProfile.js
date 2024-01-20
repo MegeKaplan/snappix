@@ -71,7 +71,7 @@ const editProfilePage = (userData) => {
 
         // Get Profile Picture URL
         // Define New Profile Picture Ref
-        const profilePictureRef = ref(storage, `images/${userData.id}/profilePicture`);
+        const profilePictureRef = ref(storage, `profilePictures/${userData.id}/profilePicture`);
 
         // Get URL of the Profile Picture
         getDownloadURL(profilePictureRef)
