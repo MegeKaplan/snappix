@@ -25,47 +25,12 @@ const storage = getStorage();
 
 
 const editProfilePage = (userData) => {
-    // Get Profile Picture URL
-
-    // Profile Picture Ref Ref
-    const profilePictureRef = ref(storage, `images/${userData.id}/profilePicture`);
-
-    // Get Url of Profile Picture
-    const getProfilePictureUrl = () => {
-        getDownloadURL(profilePictureRef)
-        .then(async(profilePictureUrl) => {
-            console.log(profilePictureUrl);
-        })
-        .catch((error) => {
-            // Handle any errors
-        });
-    }
-
-    getProfilePictureUrl()
-
-    // List All
-    // Find all the prefixes and items.
-    // listAll(imagesRef)
-    // .then((res) => {
-    // res.prefixes.forEach((folderRef) => {
-    //     // All the prefixes under listRef.
-    //     // You may call listAll() recursively on them.
-    //     console.log(folderRef);
-    // });
-    // res.items.forEach((itemRef) => {
-    //     // All the items under listRef.
-    //     console.log(itemRef);
-    // });
-    // }).catch((error) => {
-    // // Uh-oh, an error occurred!
-    // });
-
     // Create Edit Profile Page
     var pageData = {
         inner: `
         <ul>
             <li>
-                <span><img src="./imgs/pp/pp_admin.png" alt="${userData.username}"></span>
+                <span><img src="${userData.profilePictureURL}" alt="${userData.username}" value="${userData.profilePictureURL}"></span>
                 <span><input type="file" id="newProfilePicture"></span>
             </li>
             <li>
@@ -100,12 +65,38 @@ const editProfilePage = (userData) => {
 
     // Define save changes function
     const saveChanges = async() => {
-        // Upload Profile Picture Tests
+        // Upload Profile Picture
         // Select New Profile Picture
         const newProfilePicture = document.querySelector("#newProfilePicture").files[0];
-        
+
+        // Get Profile Picture URL
         // Define New Profile Picture Ref
         const profilePictureRef = ref(storage, `images/${userData.id}/profilePicture`);
+
+        // Get URL of the Profile Picture
+        getDownloadURL(profilePictureRef)
+        .then((profilePictureUrl) => {
+            // Log
+            console.log("PP_URL: ",profilePictureUrl);
+            
+            // Upload the profile picture url to firestore
+            updateDoc(doc(db, "users", userData.id), {profilePictureURL: profilePictureUrl});
+        })
+        .catch((error) => {
+            // Handle any errors
+        });
+
+        // Upload selected file
+        console.log(newProfilePicture);
+        if(newProfilePicture!=undefined){
+            // Upload new profile picture to storage
+            uploadBytes(profilePictureRef, newProfilePicture).then((snapshot) => {
+                console.log('Uploaded the new profile picture!');
+            });
+        }else{
+            console.log("No file chosen.");
+        }
+
 
         // Get and set the new user data
         // Password Validation
@@ -118,17 +109,11 @@ const editProfilePage = (userData) => {
                 email: document.querySelector("#newEmail").value,
                 password: document.querySelector("#newPassword").value,
                 description: document.querySelector("#newDescription").value,
-                // profilePictureURL: "profilePicture",
             }            
-            // console.log(updatedUserData)
-
-            // Upload new profile picture to storage
-            uploadBytes(profilePictureRef, newProfilePicture).then((snapshot) => {
-                console.log('Uploaded the new profile picture!');
-            });
-
+            
             // Update to firebase
-            await updateDoc(doc(db, "users", userData.id), updatedUserData);
+            updateDoc(doc(db, "users", userData.id), {updatedUserData});
+            // console.log(updatedUserData)
 
             // Update to auth
             // Update Display Name
@@ -141,6 +126,7 @@ const editProfilePage = (userData) => {
                 // An error occurred
                 // ...
             });
+            
             // Update Email
             updateEmail(auth.currentUser, updatedUserData.email).then(() => {
                 // Email updated!
@@ -158,9 +144,6 @@ const editProfilePage = (userData) => {
             //     console.log(error);
             //     // ...
             // });
-
-
-
         }else{
             alert("The passwords you entered do not match! Please try again.")
         }

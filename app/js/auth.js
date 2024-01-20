@@ -81,6 +81,7 @@ try{
                     isAdmin: false,
                     isDev: false,
                     profilePictureURL: "profilePicture",
+                    profilePictureName: "profilePicture",
                     description: "",
                 }
     

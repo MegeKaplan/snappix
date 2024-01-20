@@ -35,13 +35,13 @@ import { editProfilePage } from "../components/EditProfile.js";
 onAuthStateChanged(auth, async(user) => {
     if (user) {
         // User is signed in, see docs for a list of available properties
-        console.log(auth.currentUser.uid);
+        // console.log(auth.currentUser.uid);
       
         // Get the user data
         var docSnap = await getDoc(doc(db, "users", auth.currentUser.uid))
         var userData = docSnap.data()
       
-        console.log(userData);
+        // console.log(userData);
 
         // Set Default Page
         editProfilePage(userData)
