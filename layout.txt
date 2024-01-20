@@ -22,3 +22,22 @@ home:
                 messages
             storys (center-top)
         }
+
+addPostPage:
+    add photo btn
+    add title input
+    add content input
+
+_POST CONTENT_
+newPost = {    
+    photoURL -> URL or undefined - from user
+    title - from user
+    content - from user
+    
+    sender - from db
+    likes - from db
+    shares - from db
+    favourites - from db
+
+    date - from js
+}

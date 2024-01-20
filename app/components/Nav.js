@@ -1,8 +1,5 @@
-{/* <nav class="side bottom">
-        
-    </nav> */}
 
-
+// Add Nav
 const addNav = (userData) => {
     // Select body
     const body = document.querySelector("body")

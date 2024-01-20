@@ -114,6 +114,40 @@
     }
 }
 
+// EditProfile
+.newPost{
+    ul{
+        padding: 0 20px;
+        width: 100%;
+        display: flex;align-items: center;justify-content: center;flex-direction: column;
+        li{
+            width: 100%;
+            min-height: 60px;
+            border-bottom: $border;
+            display: flex;align-items: center;justify-content: center;
+            span{
+                width: 50%;
+                height: 100%;
+                display: flex;align-items: center;justify-content: center;
+                padding: 10px 20px;
+                &:nth-child(1){
+                    width: 30%;
+                }
+                &:nth-child(2){
+                    width: 70%;
+                }
+                img{
+                    width: 150px;
+                    height: 150px;
+                }
+                input{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 600px) {
     // Profile
     .profile {

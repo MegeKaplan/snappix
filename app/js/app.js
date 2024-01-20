@@ -29,8 +29,6 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-// // Set Default Page
-import { editProfilePage } from "../components/EditProfile.js";
 
 // isAuthenticed Check
 onAuthStateChanged(auth, async(user) => {
@@ -48,7 +46,7 @@ onAuthStateChanged(auth, async(user) => {
         addNav(userData)
 
         // Set Default Page
-        newPostPage()
+        // newPostPage()
 
 
         const profileBtn=document.querySelector("#profileBtn")
