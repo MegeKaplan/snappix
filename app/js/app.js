@@ -11,6 +11,7 @@ import { discoverPage } from "../components/Discover.js";
 import { messagesPage } from "../components/Messages.js";
 import { homePage } from "../components/Home.js";
 import { menuPage } from "../components/Menu.js";
+import { addNav } from "../components/Nav.js";
 
 // Import Local Modules
 // ...
@@ -42,9 +43,12 @@ onAuthStateChanged(auth, async(user) => {
         var userData = docSnap.data()
       
         // console.log(userData);
+        
+        // Add Nav
+        addNav(userData)
 
         // Set Default Page
-        editProfilePage(userData)
+        newPostPage()
 
 
         const profileBtn=document.querySelector("#profileBtn")

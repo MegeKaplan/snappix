@@ -1,1 +1,2 @@
-- Add Box Shadow
+- Add box shadow
+- Add change email and password

@@ -127,15 +127,15 @@ const editProfilePage = (userData) => {
                 // ...
             });
             
-            // // Update Email
-            // updateEmail(auth.currentUser, updatedUserData.email).then(() => {
-            //     // Email updated!
-            //     // ...
-            // }).catch((error) => {
-            //     // An error occurred
-            //     console.log(error);
-            //     // ...
-            // });
+            // Update Email
+            updateEmail(auth.currentUser, updatedUserData.email).then(() => {
+                // Email updated!
+                // ...
+            }).catch((error) => {
+                // An error occurred
+                console.log(error);
+                // ...
+            });
 
             // // Update Password
             // updatePassword(auth.currentUser, updatedUserData.password).then(() => {
