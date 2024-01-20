@@ -46,7 +46,7 @@ onAuthStateChanged(auth, async(user) => {
         addNav(userData)
 
         // Set Default Page
-        // newPostPage()
+        newPostPage(userData)
 
 
         const profileBtn=document.querySelector("#profileBtn")
@@ -66,7 +66,7 @@ onAuthStateChanged(auth, async(user) => {
 
         const newPostBtn=document.querySelector("#newPostBtn")
         newPostBtn.onclick = () => {
-          newPostPage()
+          newPostPage(userData)
         }
 
         const discoverBtn=document.querySelector("#discoverBtn")

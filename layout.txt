@@ -30,15 +30,17 @@ addPostPage:
 
 _POST CONTENT_
 newPost = {    
-    photoURL -> URL or undefined - from user
+    imageURL -> URL or undefined - from user
     title - from user
     content - from user
     
     id - from db
     sender - from db
     likes - from db
-    shares - from db
+    shares - from db - [from, to]
     favourites - from db
+    tags - from db
+    hashtags - from db
 
     date - from js
 }
