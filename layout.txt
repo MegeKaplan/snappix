@@ -34,6 +34,7 @@ newPost = {
     title - from user
     content - from user
     
+    id - from db
     sender - from db
     likes - from db
     shares - from db

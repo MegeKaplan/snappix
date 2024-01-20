@@ -162,7 +162,8 @@ main {
 }
 
 input,
-button {
+button,
+textarea {
   width: auto;
   height: 40px;
   min-width: 70px;
@@ -170,6 +171,12 @@ button {
   background: none;
   border: #dfe6e9 1px solid;
   padding: 10px;
+}
+
+textarea {
+  resize: vertical;
+  width: 100%;
+  min-height: 100px;
 }
 
 button {
