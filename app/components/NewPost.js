@@ -95,30 +95,28 @@ const newPostPage = (userData) => {
 
         if(postImage!=undefined){
             // Upload new profile picture to storage
-            uploadBytes(postImageRef, postImage).then((snapshot) => {
+            await uploadBytes(postImageRef, postImage).then((snapshot) => {
                 console.log('Uploaded the image!', postImage);
             });
 
-            // Update imageURL of newPost
+            // Get imageURL of newPost
             const imageUrlRef = ref(storage, `posts/${userData.id}/${newPost.id}/image`);
 
-            getDownloadURL(imageUrlRef)
+            await getDownloadURL(imageUrlRef)
             .then((imageUrl) => {
                 // Log
                 console.log("IMAGE_URL: ", imageUrl);
+                newPost.imageURL = imageUrl
             })
             .catch((error) => {
                 // Handle any errors
                 console.log(error);
             });
-
+            
             // Add post to posts/
-            console.log(newPost);
             await setDoc(newPostRef, newPost);
         }else{
             console.log("No file chosen.");
-            console.log(newPost);
-            
             await setDoc(newPostRef, newPost);
         }
     }
