@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, setDoc, updateDoc, getDoc, getDocs, query, where, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
@@ -51,6 +51,50 @@ const profilePage = (userData) => {
         `,
         class: "profile",
     }
+
+
+    
+    // Show posts of user
+    const showPosts = async() => {
+        // Select postsContainer
+        setTimeout(() => {
+            const postsContainer = document.querySelector("#posts")
+            console.log(postsContainer);
+        }, 500);
+
+
+
+        // Define add post to container function
+        const addPostToContainer = (postData) => {
+            console.log(postData);
+        }
+
+        
+
+        const allPosts = await getDocs(collection(db, "posts"));
+        allPosts.forEach((post) => {
+            // doc.data() is never undefined for query doc snapshots
+            // console.log(doc.id, " => ", doc.data());
+
+            // Get all post IDs
+            var postIDs = userData.posts
+
+            // Filter user's posts
+            postIDs.forEach(postID => {
+                if(postID==post.id){
+                    // console.log(postID);
+                    // console.log(post.data());
+                    addPostToContainer(post.data())
+                }
+            });
+        });
+        
+
+    
+    }
+
+    
+    showPosts()
 
     // Edit profile button clicked
     setTimeout(() => {

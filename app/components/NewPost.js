@@ -121,9 +121,9 @@ const newPostPage = (userData) => {
     setTimeout(() => {
         const sendPostBtn = document.querySelector("#sendPostBtn")
         sendPostBtn.onclick = async() => {
-            // Username Validation
-            // var postValid = confirm(`Are you sure you want to share the post?\n${newPost.toString()}?`)
-            const postValid = true
+            // Post Validation
+            var postValid = confirm(`Are you sure you want to share the post?`)
+            // const postValid = true
             if(postValid){
                 await sendPost()
                 await homePage()
