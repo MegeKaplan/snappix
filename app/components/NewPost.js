@@ -6,6 +6,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstati
 
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
+import { homePage } from "../components/Home.js";
 
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
@@ -56,10 +57,6 @@ const newPostPage = (userData) => {
 
     // Define send post function
     const sendPost = async() => {
-        // Log
-        console.log("SEND POOOSSTTTT!!!");
-
-
         // Set Firestore
         // Add a new post with a generated id
         const newPostRef = doc(collection(db, "posts"));
@@ -82,7 +79,6 @@ const newPostPage = (userData) => {
         // var posts = await getDoc(doc(db, "users", userData.id))
         var posts = userData.posts.push(newPost.id)
 
-        
         // Add user's posts/
         await updateDoc(doc(db, "users", userData.id), {posts: userData.posts});
 
@@ -124,12 +120,13 @@ const newPostPage = (userData) => {
     // Send Post
     setTimeout(() => {
         const sendPostBtn = document.querySelector("#sendPostBtn")
-        sendPostBtn.onclick = () => {
+        sendPostBtn.onclick = async() => {
             // Username Validation
             // var postValid = confirm(`Are you sure you want to share the post?\n${newPost.toString()}?`)
             const postValid = true
             if(postValid){
-                sendPost()
+                await sendPost()
+                await homePage()
             }else{console.log("post sending cancelled!");}
         }
     }, 500);

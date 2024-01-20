@@ -46,7 +46,7 @@ onAuthStateChanged(auth, async(user) => {
         addNav(userData)
 
         // Set Default Page
-        newPostPage(userData)
+        homePage()
 
 
         const profileBtn=document.querySelector("#profileBtn")
