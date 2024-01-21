@@ -508,6 +508,13 @@ nav {
   height: clamp(650px, 800px, 110%);
   background: #eef2f3;
   border: #dfe6e9 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.editPost .post.onlyText .top {
+  border-bottom: #dfe6e9 1px solid;
 }
 .editPost .post .top {
   width: 100%;
@@ -560,6 +567,7 @@ nav {
 }
 .editPost .post .bottom .row.icons .icon i {
   margin-right: 10px;
+  cursor: pointer;
 }
 .editPost .post .bottom .row.icons .icon.liked i {
   color: #d63031;
