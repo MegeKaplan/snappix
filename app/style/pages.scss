@@ -72,7 +72,7 @@
         flex-wrap: wrap;
         width: 100%;
         padding-bottom: 50px;
-        img{
+        img {
             width: 90%;
         }
         .post {
@@ -83,14 +83,16 @@
             cursor: pointer;
             overflow: hidden;
             word-wrap: break-word;
-            .imgContainer{
+            .imgContainer {
                 width: 100%;
                 height: 100%;
                 margin-bottom: 15px;
                 position: relative;
-                display: flex;align-items: center;justify-content: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 overflow: hidden;
-                &:hover img{
+                &:hover img {
                     scale: 1.2;
                     rotate: 10deg;
                 }
@@ -100,7 +102,8 @@
                     transition: $transition;
                 }
             }
-            h4,p{
+            h4,
+            p {
                 margin: 5px;
             }
         }
@@ -184,6 +187,99 @@
                 }
                 input {
                     width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.editPost {
+    .post {
+        margin-top: 20px;
+        width: clamp(350px, 500px, 90%);
+        height: clamp(650px, 800px, 110%);
+        background: $secondary;
+        border: $border;
+        .top {
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            div {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .pp {
+                    margin-right: 10px;
+                }
+                a {
+                    color: $text !important;
+                }
+                i {
+                    cursor: pointer;
+                }
+            }
+        }
+        .imgContainer {
+            width: 100%;
+            background: #000;
+            padding-bottom: 100%;
+            background-image: url("../imgs/bg_auth2.jpg");
+            background-position: center;
+            background-size: cover;
+        }
+        .bottom {
+            .row {
+                height: auto;
+                min-height: 60px;
+                border-bottom: $border;
+                &.icons {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    .icon {
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 80px;
+                        font-size: 20px;
+                        margin-right: 10px;
+                        i {
+                            margin-right: 10px;
+                        }
+                        &.liked {
+                            i{
+                                color: $liked;
+                            }
+                        }
+                        &.commented{
+                            i{
+                                color: $commented;
+                            }
+                        }
+                        &.saved{
+                            i{
+                                color: $saved;
+                            }
+                        }
+                    }
+                }
+                .text {
+                    margin: 5px;
+                    .title {
+                        font-size: 18px;
+                        margin: 2px;
+                    }
+                    .content {
+                        margin-bottom: 5px;
+                    }
+                    .sendDate {
+                        color: lighten($color: $text, $amount: 30);
+                        font-size: 16px;
+                    }
                 }
             }
         }

@@ -19,15 +19,15 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-// Create Edit Post Page
-var pageData = {
-    inner: `
-    <h1>Hello Edit Post Page</h1>
-    `,
-    class: "editPost",
-}
 
 const editPostPage = (postID) => {
+    // Create Edit Post Page
+    var pageData = {
+        inner: `
+        <h1>Hello Edit Post Page</h1>
+        `,
+        class: "editPost",
+    }
 
     console.log(postID);
 

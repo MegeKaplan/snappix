@@ -47,7 +47,7 @@ onAuthStateChanged(auth, async(user) => {
 
         // Set Default Page
         // homePage()
-        profilePage(userData)
+        // profilePage(userData)
 
 
         const profileBtn=document.querySelector("#profileBtn")

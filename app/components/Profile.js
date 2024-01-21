@@ -87,7 +87,7 @@ const profilePage = (userData) => {
                     `
                 }else{
                     newPostEl.innerHTML = `
-                    <div class="imgContainer" alt="${postData.id}">
+                    <div class="imgContainer" post_id="${postData.id}">
                         <img src="${postData.imageURL}" post_id="${postData.id}">
                     </div>
                     `
