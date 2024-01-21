@@ -6,6 +6,7 @@ import { getFirestore, doc, setDoc, updateDoc, getDoc, getDocs, query, where, co
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
 import { editProfilePage } from "./EditProfile.js";
+import { editPostPage } from "./EditPost.js";
 
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
@@ -66,26 +67,35 @@ const profilePage = (userData) => {
                 // Create new post element
                 var newPostEl = document.createElement("div")
 
+                // Add 3 dot for long text
+                var title3dot = [false, 15, ""]
+                var content3dot = [false, 90, ""]
+                if(postData.title.length > title3dot[1]){
+                    title3dot[0] = true
+                    title3dot[2] = "..."
+                }
+                if(postData.title.length > content3dot[1]){
+                    content3dot[0] = true
+                    content3dot[2] = "..."
+                }
+
                 // Set the innerHTML of new post
                 if(postData.imageURL==null){
                     newPostEl.innerHTML = `
-                    <div class="post">
-                        <h4>${postData.title}</h4>
-                        <p>${postData.content}</p>
-                    </div>
+                    <h4 post_id="${postData.id}">${postData.title.slice(0, title3dot[1]) + title3dot[2]}</h4>
+                    <p post_id="${postData.id}">${postData.content.slice(0, content3dot[1]) + content3dot[2]}</p>
                     `
                 }else{
                     newPostEl.innerHTML = `
-                    <div class="post">
-                        <div class="imgContainer">
-                            <img src="${postData.imageURL}" alt="post">
-                        </div>
+                    <div class="imgContainer" alt="${postData.id}">
+                        <img src="${postData.imageURL}" post_id="${postData.id}">
                     </div>
                     `
                 }
 
                 // Add class to new post element
                 newPostEl.classList.add("post")
+                newPostEl.setAttribute("post_id", postData.id)
 
                 // Add new post to posts container
                 postsContainer.appendChild(newPostEl)
@@ -127,6 +137,18 @@ const profilePage = (userData) => {
 
     
     showPosts()
+
+    // Get clicked post
+    try {
+        setTimeout(() => {
+            var posts = document.querySelectorAll(".post")
+            posts.forEach(post => {
+                post.addEventListener("click", (e) => {
+                    editPostPage(e.target.getAttribute("post_id"))
+                })
+            });
+        }, 1500);
+    } catch{}
 
     // Edit profile button clicked
     setTimeout(() => {

@@ -399,6 +399,8 @@ nav {
   height: calc(33vw - 1px);
   margin: 1px;
   cursor: pointer;
+  overflow: hidden;
+  word-wrap: break-word;
 }
 .profile #posts .post .imgContainer {
   width: 100%;
