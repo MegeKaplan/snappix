@@ -7,6 +7,7 @@
   box-sizing: border-box;
   color: #2d3436;
   outline: none !important;
+  scroll-behavior: smooth;
 }
 
 body,
@@ -360,6 +361,15 @@ nav {
 .profile .info .right #username {
   margin-right: 20px;
 }
+.profile .info .right #editProfileBtn.followBtn {
+  display: none;
+}
+.profile .info .right #followBtn.editProfileBtn {
+  display: none;
+}
+.profile .info .right .followBtn {
+  display: block;
+}
 .profile .info .right section {
   width: 100%;
   display: flex;
@@ -459,6 +469,7 @@ nav {
 .editProfile ul li span img {
   width: 150px;
   height: 150px;
+  border-radius: 50%;
 }
 .editProfile ul li span input {
   width: 100%;
@@ -594,6 +605,9 @@ nav {
 }
 
 @media only screen and (max-width: 600px) {
+  .page {
+    padding-bottom: 50px;
+  }
   .profile .info {
     padding: 5px;
     height: 200px;

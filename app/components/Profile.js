@@ -7,6 +7,7 @@ import { getFirestore, doc, setDoc, updateDoc, getDoc, getDocs, query, where, co
 import { createPage } from "../js/createPage.js";
 import { editProfilePage } from "./EditProfile.js";
 import { editPostPage } from "./EditPost.js";
+import { followUser } from "../js/followUser.js";
 
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
@@ -23,7 +24,28 @@ const db = getFirestore(app);
 
 
 
-const profilePage = (userData) => {
+const profilePage = async(userData, selectedUserID=userData.id) => {
+    // Define My ID
+    const myUserData = userData
+
+    // Control Profile Page User Btns
+    var profilePageBtn = "followBtn"
+
+    // Get Profile Page User Data
+    if(selectedUserID==userData.id){
+        console.log("ME!!");
+        var profilePageBtn = "editProfileBtn"
+    }else{
+        console.log("USER!!");
+        // Get the user data
+        var userDataSnap = await getDoc(doc(db, "users", selectedUserID))
+        var userData = userDataSnap.data()
+        var profilePageBtn = "followBtn"
+    }
+
+    console.log(userData);
+    
+
     // Create New Post Page
     var pageData = {
         inner: `
@@ -34,7 +56,8 @@ const profilePage = (userData) => {
         <div class="right">
             <section class="top">
                 <h3 id="username">${userData.username}</h3>
-                <button id="editProfileBtn">Edit</button>
+                <button id="editProfileBtn" class="${profilePageBtn}">Edit</button>
+                <button id="followBtn" class="${profilePageBtn}">Follow</button>
             </section>
             <section class="center">
                 <a href="#posts" class="posts"><span class="data" id="postCount">${Object.keys(userData.posts).length}</span> posts</a>
@@ -53,6 +76,12 @@ const profilePage = (userData) => {
         class: "profile",
     }
 
+    setTimeout(() => {
+        var followBtn = document.querySelector("#followBtn")
+        followBtn.addEventListener("click", (e) => {
+            followUser(myUserData, userData.id)
+        })
+    }, 500);
 
     
     // Show posts of user

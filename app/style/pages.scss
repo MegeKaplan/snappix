@@ -41,6 +41,18 @@
             #username {
                 margin-right: 20px;
             }
+            
+            // Edit/Follow Buttons Case
+            #editProfileBtn.followBtn{
+                display: none;
+            }
+            #followBtn.editProfileBtn{
+                display: none;
+            }
+            .followBtn{
+                display: block;
+            }
+            
             section {
                 width: 100%;
                 display: flex;
@@ -143,6 +155,7 @@
                 img {
                     width: 150px;
                     height: 150px;
+                    border-radius: 50%;
                 }
                 input {
                     width: 100%;
@@ -295,6 +308,11 @@
 }
 
 @media only screen and (max-width: 600px) {
+    // Page
+    .page{
+        padding-bottom: 50px;
+    }
+
     // Profile
     .profile {
         .info {

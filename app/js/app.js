@@ -120,10 +120,10 @@ onAuthStateChanged(auth, async(user) => {
                 var newSuggestionEl = document.createElement("li")
                 newSuggestionEl.innerHTML = `
                 <section class="left">
-                    <div class="pp">
+                    <div class="pp userSuggestionLink" user_id="${user.id}">
                         <img src="${user.profilePictureURL}" alt="${user.username}">
                     </div>
-                    <h4>${user.username}</h4>
+                    <h4 user_id="${user.id}" class="userSuggestionLink">${user.username}</h4>
                 </section>
                 <section class="right">
                     <button class="followBtn" user_id="${user.id}">Follow</button>
@@ -144,11 +144,20 @@ onAuthStateChanged(auth, async(user) => {
         // Add event listener to buttons for follow to user
         setTimeout(() => {
             var followBtns = document.querySelectorAll(".followBtn")
-            console.log(followBtns);
             followBtns.forEach(followBtn => {
                 followBtn.addEventListener("click", (e) => {
                     followUser(userData, e.target.getAttribute("user_id"))
-                }) 
+                })
+            });
+        }, 500);
+
+        // Add event listener to buttons for follow to user
+        setTimeout(() => {
+            var userSuggestionLinkEls = document.querySelectorAll(".userSuggestionLink")
+            userSuggestionLinkEls.forEach(userSuggestionLinkEl => {
+                userSuggestionLinkEl.addEventListener("click", (e) => {
+                    profilePage(userData, e.target.getAttribute("user_id"))
+                })
             });
         }, 500);
 
