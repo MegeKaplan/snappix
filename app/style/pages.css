@@ -84,10 +84,14 @@ aside ul li section.left .pp {
   overflow: hidden;
   border-radius: 50%;
   margin-right: 10px;
+  cursor: pointer;
 }
 aside ul li section.left .pp img {
   width: 100%;
   height: 100%;
+}
+aside ul li section.left h4 {
+  cursor: pointer;
 }
 
 .pc.logo {

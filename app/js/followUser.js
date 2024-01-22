@@ -5,6 +5,7 @@ import { getFirestore, doc, setDoc, updateDoc, getDoc } from "https://www.gstati
 
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
+import { profilePage } from "../components/Profile.js";
 
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
@@ -82,6 +83,8 @@ const followUser = async(userData, userIdToFollow) => {
         followersOfUserToFollow = newFollowersOfUserToFollow
         await updateDoc(doc(db, "users", userIdToFollow), {followers: followersOfUserToFollow});
     }
+
+    profilePage(userData, userIdToFollow)
 }
 
 

@@ -30,17 +30,25 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
 
     // Control Profile Page User Btns
     var profilePageBtn = "followBtn"
+    var followBtnInner = "Follow"
 
     // Get Profile Page User Data
     if(selectedUserID==userData.id){
         console.log("ME!!");
-        var profilePageBtn = "editProfileBtn"
+        profilePageBtn = "editProfileBtn"
     }else{
         console.log("USER!!");
         // Get the user data
         var userDataSnap = await getDoc(doc(db, "users", selectedUserID))
         var userData = userDataSnap.data()
-        var profilePageBtn = "followBtn"
+        profilePageBtn = "followBtn"
+        console.log(userData.followers);
+        userData.followers.forEach(userID => {
+            if(userID==myUserData.id){
+                followBtnInner = "Following"
+                profilePageBtn+=" active"
+            }
+        });
     }
 
     console.log(userData);
@@ -57,7 +65,7 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
             <section class="top">
                 <h3 id="username">${userData.username}</h3>
                 <button id="editProfileBtn" class="${profilePageBtn}">Edit</button>
-                <button id="followBtn" class="${profilePageBtn}">Follow</button>
+                <button id="followBtn" class="${profilePageBtn}">${followBtnInner}</button>
             </section>
             <section class="center">
                 <a href="#posts" class="posts"><span class="data" id="postCount">${Object.keys(userData.posts).length}</span> posts</a>
@@ -76,6 +84,7 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
         class: "profile",
     }
 
+    // Follow User
     setTimeout(() => {
         var followBtn = document.querySelector("#followBtn")
         followBtn.addEventListener("click", (e) => {
@@ -108,6 +117,22 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
                     content3dot[2] = "..."
                 }
 
+                // OLD !!!!!!
+                // // Set the innerHTML of new post
+                // if(postData.imageURL==null){
+                //     newPostEl.innerHTML = `
+                //     <h4 post_id="${postData.id}">${postData.title.slice(0, title3dot[1]) + title3dot[2]}</h4>
+                //     <p post_id="${postData.id}">${postData.content.slice(0, content3dot[1]) + content3dot[2]}</p>
+                //     `
+                // }else{
+                //     newPostEl.innerHTML = `
+                //     <div class="imgContainer" post_id="${postData.id}">
+                //         <img src="${postData.imageURL}" post_id="${postData.id}">
+                //     </div>
+                //     `
+                // }
+
+                // NEW !!!!!!
                 // Set the innerHTML of new post
                 if(postData.imageURL==null){
                     newPostEl.innerHTML = `
