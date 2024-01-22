@@ -5,6 +5,8 @@ import { getFirestore, doc, setDoc, updateDoc, getDocs, collection } from "https
 
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
+import { followUser } from "../js/followUser.js";
+import { profilePage } from "./Profile.js";
 
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
@@ -57,34 +59,48 @@ const searchPage = async(userData) => {
             searchResultsContainer.innerHTML = ""
             var searchQuery = searchInput.value
             allUsers.forEach(user => {
+                // Am I Following?
+                var amIFollowing = false
+                var followBtnClass = ""
+                var followBtnInner = "Follow"
+                userData.following.forEach(followedUserID => {
+                    if(user.id == followedUserID){
+                        amIFollowing = true
+                        followBtnClass = "active"
+                        followBtnInner = "Followed"
+                    }
+                });
+
+                // Get User Data
                 var user = user.data()
                 if(user.username.toLowerCase().includes(searchQuery.toLowerCase())){
                     var userResultEl = document.createElement("li")
                     userResultEl.innerHTML = `
                     <section class="left">
-                        <div class="pp userSuggestionLink" user_id="${user.id}">
+                        <div class="pp userResultLink" user_id="${user.id}">
                             <img src="${user.profilePictureURL}" alt="${user.username}" user_id="${user.id}">
                         </div>
-                        <h4 user_id="${user.id}" class="userSuggestionLink">${user.username}</h4>
+                        <h4 user_id="${user.id}" class="userResultLink">${user.username}</h4>
                     </section>
                     <section class="right">
-                        <button class="followBtn" user_id="${user.id}">Follow</button>
+                        <button class="followBtn ${followBtnClass}" user_id="${user.id}">${followBtnInner}</button>
                     </section>
                     `
                     userResultEl.classList.add("userResult")
 
-                    var amIFollowing = false
-                    userData.following.forEach(followedUserID => {
-                        if(user.id == followedUserID){
-                            amIFollowing = true
-                        }
-                    });
-                    if(userData.id!=user.id & !amIFollowing){
+                    if(userData.id!=user.id){
                         searchResultsContainer.appendChild(userResultEl)
                     }
                 }
+                var followBtns = document.querySelectorAll(".followBtn")
+                followBtns.forEach(followBtn => {
+                    followBtn.addEventListener("click", (e) => {
+                        followUser(userData, e.target.getAttribute("user_id"))
+                        profilePage(userData, e.target.getAttribute("user_id"))
+                    })
+                });
             });
-        })   
+        })
     }, 500);
 
 

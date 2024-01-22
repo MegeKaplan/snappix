@@ -24,6 +24,9 @@ const db = getFirestore(app);
 const followUser = async(userData, userIdToFollow) => {
     // Log
     // console.log(userData.id, userIdToFollow);
+    
+    var docSnap = await getDoc(doc(db, "users", userData.id))
+    var userData = docSnap.data()
 
     // Update following of me
     var isThereUser = false
@@ -33,10 +36,10 @@ const followUser = async(userData, userIdToFollow) => {
             isThereUser=true
         }
     });
+    var newFollowingToMe = []
     if(!isThereUser){
-        userData.following.push(userIdToFollow)
-        await updateDoc(doc(db, "users", userData.id), {following: userData.following});
-        // console.log(userData.following);
+        newFollowingToMe.push(userIdToFollow)
+        await updateDoc(doc(db, "users", userData.id), {following: newFollowingToMe});
     }else{
         console.log("User already exists!");
 
@@ -49,8 +52,8 @@ const followUser = async(userData, userIdToFollow) => {
             }
         });
         // console.log(newFollowingToMe);
-        userData.following = newFollowingToMe
-        await updateDoc(doc(db, "users", userData.id), {following: userData.following});
+        // userData.following = newFollowingToMe
+        await updateDoc(doc(db, "users", userData.id), {following: newFollowingToMe});
     }
 
     // Update followers of user to follow
@@ -69,7 +72,7 @@ const followUser = async(userData, userIdToFollow) => {
         await updateDoc(doc(db, "users", userIdToFollow), {followers: followersOfUserToFollow});
         // console.log(followersOfUserToFollow);
     }else{
-        console.log("User already exists!");
+        // console.log("User already exists!");
 
         // Reduce me from followers of user
         var newFollowersOfUserToFollow = []
