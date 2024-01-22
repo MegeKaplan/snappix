@@ -28,7 +28,7 @@ const followUser = async(userData, userIdToFollow) => {
     // Update following of me
     var isThereUser = false
     userData.following.forEach(userID => {
-        console.log(userID);
+        // console.log(userID);
         if(userID==userIdToFollow){
             isThereUser=true
         }
@@ -36,7 +36,7 @@ const followUser = async(userData, userIdToFollow) => {
     if(!isThereUser){
         userData.following.push(userIdToFollow)
         await updateDoc(doc(db, "users", userData.id), {following: userData.following});
-        console.log(userData.following);
+        // console.log(userData.following);
     }else{
         console.log("User already exists!");
 
@@ -44,11 +44,11 @@ const followUser = async(userData, userIdToFollow) => {
         var newFollowingToMe = []
         userData.following.forEach(userID => {
             if(userID!=userIdToFollow){
-                console.log(userID);
+                // console.log(userID);
                 newFollowingToMe.push(userID)
             }
         });
-        console.log(newFollowingToMe);
+        // console.log(newFollowingToMe);
         userData.following = newFollowingToMe
         await updateDoc(doc(db, "users", userData.id), {following: userData.following});
     }
@@ -59,7 +59,7 @@ const followUser = async(userData, userIdToFollow) => {
         
     var isThereMe = false
     followersOfUserToFollow.forEach(userID => {
-        console.log(userID);
+        // console.log(userID);
         if(userID==userData.id){
             isThereMe=true
         }
@@ -67,7 +67,7 @@ const followUser = async(userData, userIdToFollow) => {
     if(!isThereMe){
         followersOfUserToFollow.push(userData.id)
         await updateDoc(doc(db, "users", userIdToFollow), {followers: followersOfUserToFollow});
-        console.log(followersOfUserToFollow);
+        // console.log(followersOfUserToFollow);
     }else{
         console.log("User already exists!");
 
@@ -75,11 +75,11 @@ const followUser = async(userData, userIdToFollow) => {
         var newFollowersOfUserToFollow = []
         followersOfUserToFollow.forEach(userID => {
             if(userID!=userData.id){
-                console.log(userID);
+                // console.log(userID);
                 newFollowersOfUserToFollow.push(userID)
             }
         });
-        console.log(newFollowersOfUserToFollow);
+        // console.log(newFollowersOfUserToFollow);
         followersOfUserToFollow = newFollowersOfUserToFollow
         await updateDoc(doc(db, "users", userIdToFollow), {followers: followersOfUserToFollow});
     }

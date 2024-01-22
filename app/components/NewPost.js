@@ -74,6 +74,8 @@ const newPostPage = (userData) => {
             hashtag: "",
             tags: [],
             date: Date.now(),
+            isDeleted: false,
+            isStory: false,
         }
 
         // Get user's posts

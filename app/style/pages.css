@@ -430,7 +430,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: col;
+  flex-direction: row !important;
   flex-wrap: wrap;
   width: 100%;
   padding-bottom: 50px;
@@ -586,11 +586,14 @@ nav {
 }
 .post.page .post .imgContainer {
   width: 100%;
-  background: #000;
+  background: linear-gradient(135deg, #0984e3, #d63031);
   padding-bottom: 100%;
-  background-image: url("../imgs/bg_auth2.jpg");
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
+}
+.post.page .post .imgContainer:hover {
+  background-size: 100% 100%;
 }
 .post.page .post .bottom {
   width: 95%;
@@ -640,6 +643,76 @@ nav {
 .post.page .post .bottom .row .text .sendDate {
   color: #738489;
   font-size: 16px;
+}
+
+.search .searchBar {
+  margin: 20px;
+  margin-bottom: 10px;
+  width: 90%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: #dfe6e9 1px solid;
+}
+.search .searchBar input {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+.search .searchBar i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 50px;
+}
+.search .searchFilters {
+  margin: 20px;
+}
+.search ul#searchResults {
+  list-style: none;
+  width: 90%;
+  height: auto;
+  min-height: 300px;
+  overflow: hidden;
+  overflow-y: scroll;
+  border-radius: 10px;
+  background: #eef2f3;
+  padding: 0 0;
+  position: relative;
+}
+.search ul#searchResults li.userResult {
+  width: 100%;
+  height: 60px;
+  background: #e5ebed;
+  margin-bottom: 0px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.search ul#searchResults li.userResult section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.search ul#searchResults li.userResult section.left .pp {
+  height: 50px;
+  width: 50px;
+  background: linear-gradient(135deg, #0984e3, #d63031);
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.search ul#searchResults li.userResult section.left .pp img {
+  width: 100%;
+  height: 100%;
+}
+.search ul#searchResults li.userResult section.left h4 {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {

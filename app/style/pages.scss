@@ -41,18 +41,18 @@
             #username {
                 margin-right: 20px;
             }
-            
+
             // Edit/Follow Buttons Case
-            #editProfileBtn.followBtn{
+            #editProfileBtn.followBtn {
                 display: none;
             }
-            #followBtn.editProfileBtn{
+            #followBtn.editProfileBtn {
                 display: none;
             }
-            .followBtn{
+            .followBtn {
                 display: block;
             }
-            
+
             section {
                 width: 100%;
                 display: flex;
@@ -80,7 +80,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: col; // row
+        flex-direction: row !important; // row
         flex-wrap: wrap;
         width: 100%;
         padding-bottom: 50px;
@@ -213,10 +213,12 @@
         height: clamp(650px, 800px, 110%);
         background: $secondary;
         border: $border;
-        display: flex;align-items: center;justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         flex-direction: column;
-        &.onlyText{
-            .top{
+        &.onlyText {
+            .top {
                 border-bottom: $border;
             }
         }
@@ -244,11 +246,15 @@
         }
         .imgContainer {
             width: 100%;
-            background: #000;
+            background: $loading-bg;
             padding-bottom: 100%;
-            background-image: url("../imgs/bg_auth2.jpg");
+            // background-image: url("../imgs/bg_auth2.jpg");
             background-position: center;
             background-size: cover;
+            background-repeat: no-repeat;
+            &:hover {
+                background-size: 100% 100%;
+            }
         }
         .bottom {
             width: 95%;
@@ -273,17 +279,17 @@
                             cursor: pointer;
                         }
                         &.liked {
-                            i{
+                            i {
                                 color: $liked;
                             }
                         }
-                        &.commented{
-                            i{
+                        &.commented {
+                            i {
                                 color: $commented;
                             }
                         }
-                        &.saved{
-                            i{
+                        &.saved {
+                            i {
                                 color: $saved;
                             }
                         }
@@ -308,9 +314,83 @@
     }
 }
 
+.search {
+    .searchBar {
+        margin: 20px;
+        margin-bottom: 10px;
+        width: 90%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: $border;
+        input {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+        i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 50px;
+        }
+    }
+    .searchFilters {
+        margin: 20px;
+    }
+    ul#searchResults {
+        list-style: none;
+        width: 90%;
+        height: auto;
+        min-height: 300px;
+        overflow: hidden;
+        overflow-y: scroll;
+        border-radius: $border-radius;
+        background: $secondary;
+        padding: 0 0;
+        position: relative;
+        li.userResult {
+            width: 100%;
+            height: 60px;
+            background: darken($color: $secondary, $amount: 3);
+            margin-bottom: 0px;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            section {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: row;
+                &.left {
+                    .pp {
+                        height: 50px;
+                        width: 50px;
+                        background: $loading-bg;
+                        overflow: hidden;
+                        border-radius: 50%;
+                        margin-right: 10px;
+                        cursor: pointer;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    h4{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 600px) {
     // Page
-    .page{
+    .page {
         padding-bottom: 50px;
     }
 

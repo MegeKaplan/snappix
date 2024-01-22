@@ -5,6 +5,7 @@ import { getFirestore, doc, setDoc, updateDoc, getDoc } from "https://www.gstati
 
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
+import { profilePage } from "./Profile.js";
 
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
@@ -39,8 +40,8 @@ const postPage = async(userData, postID) => {
         <div class="post" post_id="${postData.id}">
             <div class="top">
                 <div class="left">
-                    <img src="${senderData.profilePictureURL}" alt="" class="pp">
-                    <a href="#" class="sender">Sender</a>
+                    <img user_id="${senderData.id}" src="${senderData.profilePictureURL}" alt="" class="pp userLink">
+                    <a user_id="${senderData.id}" href="#" class="sender userLink">${senderData.username}</a>
                 </div>
                 <div class="right">
                     <i class="fa-solid fa-bars" post_id="postID"></i>
@@ -75,13 +76,24 @@ const postPage = async(userData, postID) => {
         class: "post",
     }
 
+
+    // Go to user's profile
+    setTimeout(() => {
+        var userLinks = document.querySelectorAll(".userLink")
+        userLinks.forEach(userLink => {
+            userLink.addEventListener("click", (e) => {
+                profilePage(userData, e.target.getAttribute("user_id"))
+            })
+        });
+    }, 500);
+
     // Set post image
     setTimeout(() => {
         var post = document.querySelector("#postImg")
         post.style.backgroundImage = `url(${postData.imageURL})`
     }, 1500);
 
-    console.log(postData);
+    // console.log(postData);
 
 
 

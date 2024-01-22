@@ -48,7 +48,9 @@ onAuthStateChanged(auth, async(user) => {
 
         // Set Default Page
         // homePage()
-        postPage(userData, "oAptqK44vKtDcT5DjKkL")
+        setTimeout(() => {
+          searchPage(userData)
+        }, 500);
 
 
         const profileBtn=document.querySelector("#profileBtn")
@@ -63,7 +65,7 @@ onAuthStateChanged(auth, async(user) => {
 
         const searchBtn=document.querySelector("#searchBtn")
         searchBtn.onclick = () => {
-          searchPage()
+          searchPage(userData)
         }
 
         const newPostBtn=document.querySelector("#newPostBtn")
@@ -163,6 +165,7 @@ onAuthStateChanged(auth, async(user) => {
                 })
             });
         }, 500);
+        
 
 
         

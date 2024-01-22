@@ -26,8 +26,9 @@ const db = getFirestore(app);
 
 
 const profilePage = async(userData, selectedUserID=userData.id) => {
-    // Define My ID
-    const myUserData = userData
+    // console.log("UD:", userData);
+
+    // Get user data
 
     // Control Profile Page User Btns
     var profilePageBtn = "followBtn"
@@ -37,15 +38,15 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
     if(selectedUserID==userData.id){
         // console.log("ME!!");
         profilePageBtn = "editProfileBtn"
+        var profileUserData = userData
     }else{
         // console.log("USER!!");
         // Get the user data
-        var userDataSnap = await getDoc(doc(db, "users", selectedUserID))
-        var userData = userDataSnap.data()
+        var profileUserDataSnap = await getDoc(doc(db, "users", selectedUserID))
+        var profileUserData = await profileUserDataSnap.data()
         profilePageBtn = "followBtn"
-        // console.log(userData.followers);
-        userData.followers.forEach(userID => {
-            if(userID==myUserData.id){
+        profileUserData.followers.forEach(userID => {
+            if(userID==userData.id){
                 followBtnInner = "Following"
                 profilePageBtn+=" active"
             }
@@ -57,20 +58,20 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
         inner: `
     <div class="info">
         <div class="left">
-            <img id="userPP" src="${userData.profilePictureURL}" alt="">
+            <img id="userPP" src="${profileUserData.profilePictureURL}" alt="">
         </div>
         <div class="right">
             <section class="top">
-                <h3 id="username">${userData.username}</h3>
+                <h3 id="username">${profileUserData.username}</h3>
                 <button id="editProfileBtn" class="${profilePageBtn}">Edit</button>
                 <button id="followBtn" class="${profilePageBtn}">${followBtnInner}</button>
             </section>
             <section class="center">
-                <a href="#posts" class="posts"><span class="data" id="postCount">${Object.keys(userData.posts).length}</span> posts</a>
-                <a href="#" class="followers"><span class="data" id="followerCount">${Object.keys(userData.followers).length}</span> followers</a>
-                <a href="#" class="following"><span class="data" id="followingCount">${Object.keys(userData.following).length}</span> following</a>
+                <a href="#posts" class="posts"><span class="data" id="postCount">${Object.keys(profileUserData.posts).length}</span> posts</a>
+                <a href="#" class="followers"><span class="data" id="followerCount">${Object.keys(profileUserData.followers).length}</span> followers</a>
+                <a href="#" class="following"><span class="data" id="followingCount">${Object.keys(profileUserData.following).length}</span> following</a>
             </section>
-            <section class="bottom desc description" id="description">${userData.description}</section>
+            <section class="bottom desc description" id="description">${profileUserData.description}</section>
         </div>
     </div>
     <h1>Posts</h1>
@@ -86,7 +87,7 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
     setTimeout(() => {
         var followBtn = document.querySelector("#followBtn")
         followBtn.addEventListener("click", (e) => {
-            followUser(myUserData, userData.id)
+            followUser(userData, profileUserData.id)
         })
     }, 500);
 
@@ -156,7 +157,7 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
 
 
         // Get all post IDs
-        var postIDs = userData.posts
+        var postIDs = profileUserData.posts
 
         // Clear posts container if user has any post
         if(Object.keys(postIDs).length!=0){
@@ -206,7 +207,7 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
     setTimeout(() => {
         const editProfileBtn = document.querySelector("#editProfileBtn")
         editProfileBtn.onclick = () => {
-            editProfilePage(userData)
+            editProfilePage(profileUserData)
         }
     }, 500);
 
