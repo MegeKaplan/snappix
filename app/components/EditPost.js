@@ -20,11 +20,31 @@ const db = getFirestore(app);
 
 
 
-const editPostPage = (postID) => {
+const editPostPage = (userData, postID) => {
     // Create Edit Post Page
     var pageData = {
         inner: `
-        <h1>Hello Edit Post Page</h1>
+        <ul>
+            <li>
+                <span><img id="pageImgEl" src="./imgs/bg_auth.jpg" alt=""></span>
+            </li>
+            <li>
+                <span>Post Title</span>
+                <span><input id="postTitle" type="text" value=""></span>
+            </li>
+            <li>
+                <span>Post Content</span>
+                <span><textarea id="postContent" name="" cols="30" rows="10"></textarea></span>
+            </li>
+            <li>
+                <span>Hashtag</span>
+                <span><input id="postHashtag" type="text" value="# Disabled" disabled></span>
+            </li>
+            <li>
+                <button id="deletePostBtn">Delete This Post</button>
+                <button id="saveChangesBtn">Share This Post</button>
+            </li>
+        </ul>
         `,
         class: "editPost",
     }

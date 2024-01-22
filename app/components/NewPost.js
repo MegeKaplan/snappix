@@ -7,6 +7,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstati
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
 import { homePage } from "../components/Home.js";
+import { postPage } from "./Post.js";
 
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
@@ -80,6 +81,7 @@ const newPostPage = (userData) => {
 
         // Get user's posts
         // var posts = await getDoc(doc(db, "users", userData.id))
+        // var posts = userData.posts.push(newPost.id)
         var posts = userData.posts.push(newPost.id)
 
         // Add user's posts/
@@ -129,7 +131,7 @@ const newPostPage = (userData) => {
             // const postValid = true
             if(postValid){
                 await sendPost()
-                await homePage()
+                await postPage(post.newPost.id)
             }else{console.log("post sending cancelled!");}
         }
     }, 500);

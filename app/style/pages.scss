@@ -166,7 +166,7 @@
 }
 
 // EditProfile
-.newPost {
+.newPost, .editPost {
     ul {
         padding: 0 20px;
         width: 100%;
@@ -201,6 +201,12 @@
                 input {
                     width: 100%;
                 }
+            }
+            button{
+                margin: 20px;
+                &#deletePostBtn{
+                    background: $danger;
+                }       
             }
         }
     }

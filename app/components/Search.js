@@ -92,6 +92,8 @@ const searchPage = async(userData) => {
                         searchResultsContainer.appendChild(userResultEl)
                     }
                 }
+
+                // Add event listener to buttons for follow to user
                 var followBtns = document.querySelectorAll(".followBtn")
                 followBtns.forEach(followBtn => {
                     followBtn.addEventListener("click", (e) => {
@@ -99,6 +101,16 @@ const searchPage = async(userData) => {
                         profilePage(userData, e.target.getAttribute("user_id"))
                     })
                 });
+                
+                // Add event listener to buttons for go to profile of user
+                setTimeout(() => {
+                    var userSuggestionLinkEls = document.querySelectorAll(".userResultLink")
+                    userSuggestionLinkEls.forEach(userSuggestionLinkEl => {
+                        userSuggestionLinkEl.addEventListener("click", (e) => {
+                            profilePage(userData, e.target.getAttribute("user_id"))
+                        })
+                    });
+                }, 500);
             });
         })
     }, 500);

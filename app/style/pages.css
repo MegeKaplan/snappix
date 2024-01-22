@@ -510,7 +510,7 @@ nav {
   width: 100%;
 }
 
-.newPost ul {
+.newPost ul, .editPost ul {
   padding: 0 20px;
   width: 100%;
   display: flex;
@@ -518,7 +518,7 @@ nav {
   justify-content: center;
   flex-direction: column;
 }
-.newPost ul li {
+.newPost ul li, .editPost ul li {
   width: 100%;
   min-height: 60px;
   border-bottom: #dfe6e9 1px solid;
@@ -526,7 +526,7 @@ nav {
   align-items: center;
   justify-content: center;
 }
-.newPost ul li span {
+.newPost ul li span, .editPost ul li span {
   width: 50%;
   height: 100%;
   display: flex;
@@ -534,18 +534,24 @@ nav {
   justify-content: center;
   padding: 10px 20px;
 }
-.newPost ul li span:nth-child(1) {
+.newPost ul li span:nth-child(1), .editPost ul li span:nth-child(1) {
   width: 30%;
 }
-.newPost ul li span:nth-child(2) {
+.newPost ul li span:nth-child(2), .editPost ul li span:nth-child(2) {
   width: 70%;
 }
-.newPost ul li span img {
+.newPost ul li span img, .editPost ul li span img {
   width: 150px;
   height: 150px;
 }
-.newPost ul li span input {
+.newPost ul li span input, .editPost ul li span input {
   width: 100%;
+}
+.newPost ul li button, .editPost ul li button {
+  margin: 20px;
+}
+.newPost ul li button#deletePostBtn, .editPost ul li button#deletePostBtn {
+  background: red;
 }
 
 .post.page .post {

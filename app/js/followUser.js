@@ -85,8 +85,8 @@ const followUser = async(userData, userIdToFollow) => {
         await updateDoc(doc(db, "users", userIdToFollow), {followers: newFollowersOfUserToFollow});
     }
 
-    // window.location.reload()
     profilePage(userData, userIdToFollow)
+    window.location.reload()
 }
 
 

@@ -13,6 +13,7 @@ import { homePage } from "../components/Home.js";
 import { menuPage } from "../components/Menu.js";
 import { addNav } from "../components/Nav.js";
 import { postPage } from "../components/Post.js";
+import { editPostPage } from "../components/EditPost.js";
 
 // Import Local Modules
 import { followUser } from "./followUser.js";
@@ -49,7 +50,7 @@ onAuthStateChanged(auth, async(user) => {
         // Set Default Page
         // homePage()
         setTimeout(() => {
-          searchPage(userData)
+          editPostPage(userData, "XgEp3uz7S576m2I6KCfn")
         }, 500);
 
 
@@ -156,7 +157,7 @@ onAuthStateChanged(auth, async(user) => {
             });
         }, 500);
 
-        // Add event listener to buttons for follow to user
+        // Add event listener to buttons for go to profile of user
         setTimeout(() => {
             var userSuggestionLinkEls = document.querySelectorAll(".userSuggestionLink")
             userSuggestionLinkEls.forEach(userSuggestionLinkEl => {

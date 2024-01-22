@@ -26,7 +26,7 @@ const db = getFirestore(app);
 
 
 const profilePage = async(userData, selectedUserID=userData.id) => {
-    // console.log("UD:", userData);
+    
 
     // Get user data
 
@@ -94,6 +94,11 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
     
     // Show posts of user
     const showPosts = async() => {
+        // Bug Fix for showing posts
+        setTimeout(() => {
+            const postsContainer = document.querySelector("#posts")
+            postsContainer.innerHTML = ""
+        }, 200);
         
         // Define add post to container function
         const addPostToContainer = (postData) => {
