@@ -65,7 +65,7 @@ aside {
     top: 50%;
     transform: translateY(-50%);
     height: 95vh;
-    width: 25vw;
+    width: clamp(10vw, 20vw, 25vw);
     ul {
         list-style: none;
         width: 100%;
@@ -133,7 +133,7 @@ aside {
     top: 2.7vh;
     left: calc(120px + 20vw);
     // transform: translateX(-50%);
-    width: 40vw;
+    width: 30vw;
     height: 70px;
     border-radius: $border-radius;
     overflow: hidden;
@@ -361,5 +361,39 @@ nav {
         height: calc(100vh - 120px - 70px);
         border: none;
         border-radius: 0;
+    }
+}
+
+@media only screen and (max-width: 1030px) and (min-width: 600px){
+    .stories{
+        left: 25vw !important;
+        width: 45vw !important;
+    }
+    nav.side{
+        height: 85vh !important;
+        bottom: 20px !important;
+        top: auto !important;
+        transform: none !important;
+    }
+    .logo.pc{
+        left: 20px !important;
+        top: 4vh !important;
+        font-size: 30px !important;
+    }
+    main{
+        width: 50vw;
+    }
+}
+
+// aside
+@media only screen and (max-width: 800px) and (min-width: 600px){
+    .stories{
+        width: 70vw !important;
+    }
+    aside{
+        display: none !important;
+    }
+    main{
+        width: 80vw !important;
     }
 }

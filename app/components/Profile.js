@@ -34,25 +34,22 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
 
     // Get Profile Page User Data
     if(selectedUserID==userData.id){
-        console.log("ME!!");
+        // console.log("ME!!");
         profilePageBtn = "editProfileBtn"
     }else{
-        console.log("USER!!");
+        // console.log("USER!!");
         // Get the user data
         var userDataSnap = await getDoc(doc(db, "users", selectedUserID))
         var userData = userDataSnap.data()
         profilePageBtn = "followBtn"
-        console.log(userData.followers);
+        // console.log(userData.followers);
         userData.followers.forEach(userID => {
             if(userID==myUserData.id){
                 followBtnInner = "Following"
                 profilePageBtn+=" active"
             }
         });
-    }
-
-    console.log(userData);
-    
+    }    
 
     // Create New Post Page
     var pageData = {

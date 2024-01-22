@@ -121,7 +121,7 @@ onAuthStateChanged(auth, async(user) => {
                 newSuggestionEl.innerHTML = `
                 <section class="left">
                     <div class="pp userSuggestionLink" user_id="${user.id}">
-                        <img src="${user.profilePictureURL}" alt="${user.username}">
+                        <img src="${user.profilePictureURL}" alt="${user.username}" user_id="${user.id}">
                     </div>
                     <h4 user_id="${user.id}" class="userSuggestionLink">${user.username}</h4>
                 </section>

@@ -26,13 +26,25 @@ const storage = getStorage();
 
 const editProfilePage = (userData) => {
     // console.log(selectedUserID);
+    // Add profile picture review
+    var profilePicturePreview = userData.profilePictureURL
+
+    // Add event listener to file select button
+    setTimeout(() => {
+        const newProfilePictureBtn = document.querySelector("#newProfilePicture")
+        newProfilePictureBtn.addEventListener("change", (e) => {
+            profilePicturePreview = newProfilePictureBtn.files[0]
+            userData.profilePictureURL = profilePicturePreview
+            console.log(userData.profilePictureURL);
+        })
+    }, 500);
 
     // Create Edit Profile Page
     var pageData = {
         inner: `
         <ul>
             <li>
-                <span><img src="${userData.profilePictureURL}" alt="${userData.username}" value="${userData.profilePictureURL}"></span>
+                <span><img src="${profilePicturePreview}" alt="${userData.username}" value="${userData.profilePictureURL}"></span>
                 <span><input type="file" id="newProfilePicture"></span>
             </li>
             <li>
