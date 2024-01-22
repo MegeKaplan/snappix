@@ -41,7 +41,7 @@ aside {
   top: 50%;
   transform: translateY(-50%);
   height: 95vh;
-  width: 25vw;
+  width: 20vw;
 }
 aside ul {
   list-style: none;
@@ -105,7 +105,7 @@ aside ul li section.left h4 {
   position: absolute;
   top: 2.7vh;
   left: calc(120px + 20vw);
-  width: 40vw;
+  width: 30vw;
   height: 70px;
   border-radius: 10px;
   overflow: hidden;
@@ -195,12 +195,12 @@ button {
 button:hover {
   background: #0876ca;
 }
-button.followed {
+button.active {
   border: #0984e3 1px solid;
   color: #0984e3;
   background: none;
 }
-button.followed:hover {
+button.active:hover {
   background: #d0dadf;
 }
 
@@ -320,6 +320,37 @@ nav {
     height: calc(100vh - 120px - 70px);
     border: none;
     border-radius: 0;
+  }
+}
+@media only screen and (max-width: 1030px) and (min-width: 600px) {
+  .stories {
+    left: 25vw !important;
+    width: 45vw !important;
+  }
+  nav.side {
+    height: 85vh !important;
+    bottom: 20px !important;
+    top: auto !important;
+    transform: none !important;
+  }
+  .logo.pc {
+    left: 20px !important;
+    top: 4vh !important;
+    font-size: 30px !important;
+  }
+  main {
+    width: 50vw;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .stories {
+    width: 70vw !important;
+  }
+  aside {
+    display: none !important;
+  }
+  main {
+    width: 80vw !important;
   }
 }
 .page {
@@ -517,7 +548,7 @@ nav {
   width: 100%;
 }
 
-.editPost .post {
+.post.page .post {
   margin-top: 20px;
   width: clamp(350px, 500px, 90%);
   height: clamp(650px, 800px, 110%);
@@ -528,10 +559,10 @@ nav {
   justify-content: center;
   flex-direction: column;
 }
-.editPost .post.onlyText .top {
+.post.page .post.onlyText .top {
   border-bottom: #dfe6e9 1px solid;
 }
-.editPost .post .top {
+.post.page .post .top {
   width: 100%;
   height: 60px;
   display: flex;
@@ -539,21 +570,21 @@ nav {
   justify-content: space-between;
   padding: 10px 20px;
 }
-.editPost .post .top div {
+.post.page .post .top div {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.editPost .post .top div .pp {
+.post.page .post .top div .pp {
   margin-right: 10px;
 }
-.editPost .post .top div a {
+.post.page .post .top div a {
   color: #2d3436 !important;
 }
-.editPost .post .top div i {
+.post.page .post .top div i {
   cursor: pointer;
 }
-.editPost .post .imgContainer {
+.post.page .post .imgContainer {
   width: 100%;
   background: #000;
   padding-bottom: 100%;
@@ -561,17 +592,20 @@ nav {
   background-position: center;
   background-size: cover;
 }
-.editPost .post .bottom .row {
+.post.page .post .bottom {
+  width: 95%;
+}
+.post.page .post .bottom .row {
   height: auto;
   min-height: 60px;
   border-bottom: #dfe6e9 1px solid;
 }
-.editPost .post .bottom .row.icons {
+.post.page .post .bottom .row.icons {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
-.editPost .post .bottom .row.icons .icon {
+.post.page .post .bottom .row.icons .icon {
   height: 100%;
   display: flex;
   align-items: center;
@@ -580,30 +614,30 @@ nav {
   font-size: 20px;
   margin-right: 10px;
 }
-.editPost .post .bottom .row.icons .icon i {
+.post.page .post .bottom .row.icons .icon i {
   margin-right: 10px;
   cursor: pointer;
 }
-.editPost .post .bottom .row.icons .icon.liked i {
+.post.page .post .bottom .row.icons .icon.liked i {
   color: #d63031;
 }
-.editPost .post .bottom .row.icons .icon.commented i {
+.post.page .post .bottom .row.icons .icon.commented i {
   color: #0984e3;
 }
-.editPost .post .bottom .row.icons .icon.saved i {
+.post.page .post .bottom .row.icons .icon.saved i {
   color: #e17055;
 }
-.editPost .post .bottom .row .text {
+.post.page .post .bottom .row .text {
   margin: 5px;
 }
-.editPost .post .bottom .row .text .title {
+.post.page .post .bottom .row .text .title {
   font-size: 18px;
   margin: 2px;
 }
-.editPost .post .bottom .row .text .content {
+.post.page .post .bottom .row .text .content {
   margin-bottom: 5px;
 }
-.editPost .post .bottom .row .text .sendDate {
+.post.page .post .bottom .row .text .sendDate {
   color: #738489;
   font-size: 16px;
 }

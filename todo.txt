@@ -3,3 +3,4 @@
 - Add validation for registeration
 - Add validation for newPostPage
 - Add image preview for newPostPage
+- Add full image to post

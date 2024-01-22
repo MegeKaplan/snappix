@@ -206,7 +206,7 @@
     }
 }
 
-.editPost {
+.post.page {
     .post {
         margin-top: 20px;
         width: clamp(350px, 500px, 90%);
@@ -251,6 +251,7 @@
             background-size: cover;
         }
         .bottom {
+            width: 95%;
             .row {
                 height: auto;
                 min-height: 60px;

@@ -12,6 +12,7 @@ import { messagesPage } from "../components/Messages.js";
 import { homePage } from "../components/Home.js";
 import { menuPage } from "../components/Menu.js";
 import { addNav } from "../components/Nav.js";
+import { postPage } from "../components/Post.js";
 
 // Import Local Modules
 import { followUser } from "./followUser.js";
@@ -47,7 +48,7 @@ onAuthStateChanged(auth, async(user) => {
 
         // Set Default Page
         // homePage()
-        // profilePage(userData)
+        postPage(userData, "oAptqK44vKtDcT5DjKkL")
 
 
         const profileBtn=document.querySelector("#profileBtn")
@@ -147,6 +148,8 @@ onAuthStateChanged(auth, async(user) => {
             followBtns.forEach(followBtn => {
                 followBtn.addEventListener("click", (e) => {
                     followUser(userData, e.target.getAttribute("user_id"))
+                    profilePage(userData, e.target.getAttribute("user_id"))
+
                 })
             });
         }, 500);

@@ -7,6 +7,7 @@ import { getFirestore, doc, setDoc, updateDoc, getDoc, getDocs, query, where, co
 import { createPage } from "../js/createPage.js";
 import { editProfilePage } from "./EditProfile.js";
 import { editPostPage } from "./EditPost.js";
+import { postPage } from "./Post.js";
 import { followUser } from "../js/followUser.js";
 
 // Firebase Config
@@ -195,7 +196,7 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
             var posts = document.querySelectorAll(".post")
             posts.forEach(post => {
                 post.addEventListener("click", (e) => {
-                    editPostPage(e.target.getAttribute("post_id"))
+                    postPage(userData, e.target.getAttribute("post_id"))
                 })
             });
         }, 1500);
