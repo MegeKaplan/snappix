@@ -28,7 +28,7 @@ const followUser = async(userData, userIdToFollow) => {
     var docSnap = await getDoc(doc(db, "users", userData.id))
     var userData = docSnap.data()
 
-    // Update following of me
+    // Update following of me____________________________
     var isThereUser = false
     userData.following.forEach(userID => {
         // console.log(userID);
@@ -36,12 +36,11 @@ const followUser = async(userData, userIdToFollow) => {
             isThereUser=true
         }
     });
-    var newFollowingToMe = []
     if(!isThereUser){
-        newFollowingToMe.push(userIdToFollow)
-        await updateDoc(doc(db, "users", userData.id), {following: newFollowingToMe});
+        userData.following.push(userIdToFollow)
+        await updateDoc(doc(db, "users", userData.id), {following: userData.following});
     }else{
-        console.log("User already exists!");
+        // console.log("User already exists!");
 
         // Reduce user from my following
         var newFollowingToMe = []
@@ -56,7 +55,7 @@ const followUser = async(userData, userIdToFollow) => {
         await updateDoc(doc(db, "users", userData.id), {following: newFollowingToMe});
     }
 
-    // Update followers of user to follow
+    // Update followers of user to follow____________________________
     var userToFollow = await getDoc(doc(db, "users", userIdToFollow))
     var followersOfUserToFollow = userToFollow.data().followers
         
@@ -83,10 +82,10 @@ const followUser = async(userData, userIdToFollow) => {
             }
         });
         // console.log(newFollowersOfUserToFollow);
-        followersOfUserToFollow = newFollowersOfUserToFollow
-        await updateDoc(doc(db, "users", userIdToFollow), {followers: followersOfUserToFollow});
+        await updateDoc(doc(db, "users", userIdToFollow), {followers: newFollowersOfUserToFollow});
     }
 
+    // window.location.reload()
     profilePage(userData, userIdToFollow)
 }
 
