@@ -49,7 +49,6 @@ const postPage = async(userData, postID) => {
     // Is that my post?
     userData.posts.forEach(postID => {
         if(postID==postData.id){
-            console.log("This is my post!");
             postOptionsInner = myPostOptions
         }
     });

@@ -5,6 +5,7 @@ import { getFirestore, doc, setDoc, updateDoc, getDoc } from "https://www.gstati
 
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
+import { profilePage } from "../components/Profile.js";
 
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
@@ -65,9 +66,9 @@ const editPostPage = async(userData, postID) => {
             }
 
             // Update Post to Firebase
-            console.log(updatedPostData);
             updateDoc(doc(db, "posts", postData.id), updatedPostData);
             alert("Post Edited Successfully!")
+            profilePage(userData, userData.id)
         }
 
         document.querySelector("#deletePostBtn").onclick = () => {
@@ -76,23 +77,18 @@ const editPostPage = async(userData, postID) => {
                 isDeleted: true,
             }
 
-            // Update Post to Firebase
-            console.log(updatedPostData);
-
-
             // Delete Confirmation
             var deleteConfirmation = confirm(`This post will be lost forever! Are you sure you want to delete?`)
             if(deleteConfirmation){
+                // Update Post to Firebase
                 updateDoc(doc(db, "posts", postData.id), updatedPostData);
                 alert("Post Deleted Successfully!")
+                profilePage(userData, userData.id)
             }else{
                 alert("Deletion canceled...")
             }
         }
     }, 500);
-
-    console.log(postID);
-
 
 
     createPage(pageData)

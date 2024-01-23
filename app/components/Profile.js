@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, setDoc, updateDoc, getDoc, getDocs, query, where, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, setDoc, updateDoc, getDoc, getDocs, query, where, collection, getCountFromServer } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
@@ -26,7 +26,6 @@ const db = getFirestore(app);
 
 
 const profilePage = async(userData, selectedUserID=userData.id) => {
-    
 
     // Get user data
 
@@ -51,7 +50,23 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
                 profilePageBtn+=" active"
             }
         });
-    }    
+    }
+
+    // Set user stats
+    var postCount = 0
+    const q = query(collection(db, "posts"), where("isDeleted", "==", false));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((post) => {
+        profileUserData.posts.forEach(postID => {
+            if(post.data().id==postID){
+                postCount+=1
+            }
+        });
+    });
+    console.log(postCount);
+
+    var followerCount = Object.keys(profileUserData.followers).length
+    var followingCount = Object.keys(profileUserData.following).length
 
     // Create New Post Page
     var pageData = {
@@ -67,9 +82,9 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
                 <button id="followBtn" class="${profilePageBtn}">${followBtnInner}</button>
             </section>
             <section class="center">
-                <a href="#posts" class="posts"><span class="data" id="postCount">${Object.keys(profileUserData.posts).length}</span> posts</a>
-                <a href="#" class="followers"><span class="data" id="followerCount">${Object.keys(profileUserData.followers).length}</span> followers</a>
-                <a href="#" class="following"><span class="data" id="followingCount">${Object.keys(profileUserData.following).length}</span> following</a>
+                <a href="#posts" class="posts"><span class="data" id="postCount">${postCount}</span> posts</a>
+                <a href="#" class="followers"><span class="data" id="followerCount">${followerCount}</span> followers</a>
+                <a href="#" class="following"><span class="data" id="followingCount">${followingCount}</span> following</a>
             </section>
             <section class="bottom desc description" id="description">${profileUserData.description}</section>
         </div>
@@ -185,9 +200,10 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
             // Filter user's posts
             postIDs.forEach(postID => {
                 if(postID==post.id){
-                    // console.log(postID);
-                    // console.log(post.data());
-                    addPostToContainer(post.data())
+                    // Hide deleted posts
+                    if(!post.data().isDeleted){
+                        addPostToContainer(post.data())
+                    }
                 }
             });
         });
