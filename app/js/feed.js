@@ -6,7 +6,9 @@ import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/fi
 import { getFirestore, doc, setDoc, updateDoc, getDoc, getDocs, collection, orderBy, limit, query } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // Import Local Modules and Components
-// ...
+import { editPostPage } from "../components/EditPost.js"
+import { likePost, commentPost, savePost } from "./postOperations.js";
+import { profilePage } from "../components/Profile.js";
 
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
@@ -194,7 +196,7 @@ const createPosts = async(userData, postCount) => {
 
     // Post Operations____________________
     // Define timeout for post operations
-    const postOperationsTimeout = 250
+    const postOperationsTimeout = 5
 
     // Like Post
     setTimeout(() => {

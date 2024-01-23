@@ -123,7 +123,7 @@ const newPostPage = (userData) => {
             await setDoc(newPostRef, newPost);
         }else{
             console.log("No file chosen.");
-            await setDoc(newPostRef, newPost);
+            alert("Please select a photo!")
         }
     }
 

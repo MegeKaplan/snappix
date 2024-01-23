@@ -5,6 +5,7 @@ import { getFirestore, doc, setDoc, updateDoc } from "https://www.gstatic.com/fi
 
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
+import { createPosts } from "../js/feed.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -28,11 +29,14 @@ const homePage = (userData) => {
     // Create New Post Page
     var pageData = {
         inner: `
-        <h1>Hello Home Page</h1>
+        <div class="feed" id="feed">
+            
+        </div>
         `,
         class: "home",
     }
 
+    createPosts(userData, 1)
 
 
     createPage(pageData)

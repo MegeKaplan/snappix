@@ -61,7 +61,7 @@ onAuthStateChanged(auth, async(user) => {
 
         const homeBtn=document.querySelector("#homeBtn")
         homeBtn.onclick = () => {
-          homePage()
+          homePage(userData)
         }
 
         const searchBtn=document.querySelector("#searchBtn")
@@ -76,7 +76,7 @@ onAuthStateChanged(auth, async(user) => {
 
         const discoverBtn=document.querySelector("#discoverBtn")
         discoverBtn.onclick = () => {
-          discoverPage()
+          discoverPage(userData)
         }
 
         const messagesBtns=document.querySelectorAll(".messagesBtn")
