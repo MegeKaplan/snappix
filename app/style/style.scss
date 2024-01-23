@@ -113,7 +113,7 @@ aside {
                             height: 100%;
                         }
                     }
-                    h4{
+                    h4 {
                         cursor: pointer;
                     }
                 }
@@ -237,9 +237,16 @@ button {
         border: $border-reverse;
         color: $primary;
         background: none;
+        i {
+            color: $primary;
+        }
     }
     &.active:hover {
         background: darken($color: $secondary, $amount: 10);
+    }
+    i {
+        color: $background;
+        margin-left: 2px;
     }
 }
 
@@ -365,36 +372,36 @@ nav {
     }
 }
 
-@media only screen and (max-width: 1030px) and (min-width: 600px){
-    .stories{
+@media only screen and (max-width: 1030px) and (min-width: 600px) {
+    .stories {
         left: 25vw !important;
         width: 45vw !important;
     }
-    nav.side{
+    nav.side {
         height: 85vh !important;
         bottom: 20px !important;
         top: auto !important;
         transform: none !important;
     }
-    .logo.pc{
+    .logo.pc {
         left: 20px !important;
         top: 4vh !important;
         font-size: 30px !important;
     }
-    main{
+    main {
         width: 50vw;
     }
 }
 
 // aside
-@media only screen and (max-width: 800px) and (min-width: 600px){
-    .stories{
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+    .stories {
         width: 70vw !important;
     }
-    aside{
+    aside {
         display: none !important;
     }
-    main{
+    main {
         width: 80vw !important;
     }
 }

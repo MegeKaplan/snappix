@@ -34,6 +34,32 @@ const postPage = async(userData, postID) => {
     const date = new Date(postData.date)
     var sendDate = date.toLocaleDateString("tr")
 
+
+    // Fill post options container
+    var myPostOptions = `
+    <li post_id="${postData.id}">Edit Post</li>
+    <li post_id="${postData.id}" class="reportPost">Report Post</li>
+    `
+    var userPostOptions = `
+    <li post_id="${postData.id}" class="reportPost">Report Post</li>
+    `
+    var postOptionsInner = userPostOptions
+
+    // Is that my post?
+    userData.posts.forEach(postID => {
+        if(postID==postData.id){
+            console.log("This is my post!");
+            postOptionsInner = myPostOptions
+        }
+    });
+
+    // setTimeout(() => {
+    //     var postOptionsContainers = document.querySelectorAll(".postOptions")
+    //     array.forEach(element => {
+
+    //     });
+    // }, 500);
+
     // Create Edit Post Page
     var pageData = {
         inner: `
@@ -44,7 +70,11 @@ const postPage = async(userData, postID) => {
                     <a user_id="${senderData.id}" href="#" class="sender userLink">${senderData.username}</a>
                 </div>
                 <div class="right">
-                    <i class="fa-solid fa-bars" post_id="postID"></i>
+                    <i class="fa-solid fa-bars" class="postOptionsBtn">
+                        <ul class="postOptions">
+                            ${postOptionsInner}
+                        </ul>
+                    </i>
                 </div>
             </div>
             <div class="imgContainer" id="postImg"></div>
@@ -75,6 +105,7 @@ const postPage = async(userData, postID) => {
         `,
         class: "post",
     }
+    
 
 
     // Go to user's profile

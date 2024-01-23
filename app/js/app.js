@@ -50,7 +50,7 @@ onAuthStateChanged(auth, async(user) => {
         // Set Default Page
         // homePage()
         setTimeout(() => {
-          editPostPage(userData, "XgEp3uz7S576m2I6KCfn")
+          postPage(userData, "XgEp3uz7S576m2I6KCfn")
         }, 500);
 
 

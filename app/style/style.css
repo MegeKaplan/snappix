@@ -200,8 +200,15 @@ button.active {
   color: #0984e3;
   background: none;
 }
+button.active i {
+  color: #0984e3;
+}
 button.active:hover {
   background: #d0dadf;
+}
+button i {
+  color: #f8f8f8;
+  margin-left: 2px;
 }
 
 a {

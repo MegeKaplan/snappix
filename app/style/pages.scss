@@ -95,6 +95,7 @@
             cursor: pointer;
             overflow: hidden;
             word-wrap: break-word;
+            background: $loading-bg;
             .imgContainer {
                 width: 100%;
                 height: 100%;
@@ -112,6 +113,22 @@
                     width: 100%;
                     height: 100%;
                     transition: $transition;
+                }
+                &::before {
+                    content: "";
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background: $loading-bg;
+                    z-index: 50;
+                    opacity: 0;
+                    display: flex;align-items: center;justify-content: center;
+                    transition: $transition;
+                }
+                &:hover::before{
+                    opacity: .5;
                 }
             }
             h4,
@@ -166,7 +183,8 @@
 }
 
 // EditProfile
-.newPost, .editPost {
+.newPost,
+.editPost {
     ul {
         padding: 0 20px;
         width: 100%;
@@ -202,11 +220,11 @@
                     width: 100%;
                 }
             }
-            button{
+            button {
                 margin: 20px;
-                &#deletePostBtn{
+                &#deletePostBtn {
                     background: $danger;
-                }       
+                }
             }
         }
     }
@@ -247,6 +265,37 @@
                 }
                 i {
                     cursor: pointer;
+                    position: relative;
+                    &:hover .postOptions{
+                        display: flex !important;
+                        justify-content: center;align-items: center;
+                        flex-direction: column;
+                    }
+                    .postOptions{
+                        list-style: none;
+                        background: $background;
+                        position: absolute;
+                        top: 0px;
+                        left: -140px;
+                        min-width: 160px;
+                        min-height: auto;
+                        border-radius: $border-radius;
+                        overflow: hidden;
+                        display: none;
+                        li{
+                            width: 100%;
+                            display: flex;align-items: center;justify-content: flex-start;
+                            padding: 15px;
+                            transition: $transition;
+                            font-weight: 500;
+                            &:hover{
+                                background: $secondary;
+                            }
+                        }
+                    }
+                    .postOptions.userPost{
+                        display: none;
+                    }
                 }
             }
         }
@@ -345,6 +394,8 @@
     }
     .searchFilters {
         margin: 20px;
+        display: flex;align-items: center;justify-content: space-evenly;flex-direction: row;
+        width: 80%;
     }
     ul#searchResults {
         list-style: none;
@@ -385,7 +436,7 @@
                             height: 100%;
                         }
                     }
-                    h4{
+                    h4 {
                         cursor: pointer;
                     }
                 }

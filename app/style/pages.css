@@ -200,8 +200,15 @@ button.active {
   color: #0984e3;
   background: none;
 }
+button.active i {
+  color: #0984e3;
+}
 button.active:hover {
   background: #d0dadf;
+}
+button i {
+  color: #f8f8f8;
+  margin-left: 2px;
 }
 
 a {
@@ -446,6 +453,7 @@ nav {
   cursor: pointer;
   overflow: hidden;
   word-wrap: break-word;
+  background: linear-gradient(135deg, #0984e3, #d63031);
 }
 .profile #posts .post .imgContainer {
   width: 100%;
@@ -465,6 +473,24 @@ nav {
   width: 100%;
   height: 100%;
   transition: 0.3s;
+}
+.profile #posts .post .imgContainer::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, #0984e3, #d63031);
+  z-index: 50;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+.profile #posts .post .imgContainer:hover::before {
+  opacity: 0.5;
 }
 .profile #posts .post h4,
 .profile #posts .post p {
@@ -510,7 +536,8 @@ nav {
   width: 100%;
 }
 
-.newPost ul, .editPost ul {
+.newPost ul,
+.editPost ul {
   padding: 0 20px;
   width: 100%;
   display: flex;
@@ -518,7 +545,8 @@ nav {
   justify-content: center;
   flex-direction: column;
 }
-.newPost ul li, .editPost ul li {
+.newPost ul li,
+.editPost ul li {
   width: 100%;
   min-height: 60px;
   border-bottom: #dfe6e9 1px solid;
@@ -526,7 +554,8 @@ nav {
   align-items: center;
   justify-content: center;
 }
-.newPost ul li span, .editPost ul li span {
+.newPost ul li span,
+.editPost ul li span {
   width: 50%;
   height: 100%;
   display: flex;
@@ -534,23 +563,29 @@ nav {
   justify-content: center;
   padding: 10px 20px;
 }
-.newPost ul li span:nth-child(1), .editPost ul li span:nth-child(1) {
+.newPost ul li span:nth-child(1),
+.editPost ul li span:nth-child(1) {
   width: 30%;
 }
-.newPost ul li span:nth-child(2), .editPost ul li span:nth-child(2) {
+.newPost ul li span:nth-child(2),
+.editPost ul li span:nth-child(2) {
   width: 70%;
 }
-.newPost ul li span img, .editPost ul li span img {
+.newPost ul li span img,
+.editPost ul li span img {
   width: 150px;
   height: 150px;
 }
-.newPost ul li span input, .editPost ul li span input {
+.newPost ul li span input,
+.editPost ul li span input {
   width: 100%;
 }
-.newPost ul li button, .editPost ul li button {
+.newPost ul li button,
+.editPost ul li button {
   margin: 20px;
 }
-.newPost ul li button#deletePostBtn, .editPost ul li button#deletePostBtn {
+.newPost ul li button#deletePostBtn,
+.editPost ul li button#deletePostBtn {
   background: red;
 }
 
@@ -589,6 +624,40 @@ nav {
 }
 .post.page .post .top div i {
   cursor: pointer;
+  position: relative;
+}
+.post.page .post .top div i:hover .postOptions {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.post.page .post .top div i .postOptions {
+  list-style: none;
+  background: #f8f8f8;
+  position: absolute;
+  top: 0px;
+  left: -140px;
+  min-width: 160px;
+  min-height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  display: none;
+}
+.post.page .post .top div i .postOptions li {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 15px;
+  transition: 0.3s;
+  font-weight: 500;
+}
+.post.page .post .top div i .postOptions li:hover {
+  background: #eef2f3;
+}
+.post.page .post .top div i .postOptions.userPost {
+  display: none;
 }
 .post.page .post .imgContainer {
   width: 100%;
@@ -675,6 +744,11 @@ nav {
 }
 .search .searchFilters {
   margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 80%;
 }
 .search ul#searchResults {
   list-style: none;

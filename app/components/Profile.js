@@ -31,8 +31,8 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
     // Get user data
 
     // Control Profile Page User Btns
-    var profilePageBtn = "followBtn"
-    var followBtnInner = "Follow"
+    var profilePageBtn = 'followBtn <i class="fa-solid fa-user"></i>'
+    var followBtnInner = 'Follow'
 
     // Get Profile Page User Data
     if(selectedUserID==userData.id){
@@ -47,7 +47,7 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
         profilePageBtn = "followBtn"
         profileUserData.followers.forEach(userID => {
             if(userID==userData.id){
-                followBtnInner = "Following"
+                followBtnInner = 'Following <i class="fa-regular fa-user"></i>'
                 profilePageBtn+=" active"
             }
         });
@@ -63,7 +63,7 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
         <div class="right">
             <section class="top">
                 <h3 id="username">${profileUserData.username}</h3>
-                <button id="editProfileBtn" class="${profilePageBtn}">Edit</button>
+                <button id="editProfileBtn" class="${profilePageBtn}">Edit <i class="fa-solid fa-user-pen"></i></button>
                 <button id="followBtn" class="${profilePageBtn}">${followBtnInner}</button>
             </section>
             <section class="center">
@@ -95,10 +95,13 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
     // Show posts of user
     const showPosts = async() => {
         // Bug Fix for showing posts
-        setTimeout(() => {
-            const postsContainer = document.querySelector("#posts")
-            postsContainer.innerHTML = ""
-        }, 200);
+        // setTimeout(() => {
+        //     const postsContainer = document.querySelector("#posts")
+        //     postsContainer.innerHTML = ""
+        // }, 200);
+
+        // Keeping added posts to profile
+        var addedPosts = []
         
         // Define add post to container function
         const addPostToContainer = (postData) => {
@@ -155,8 +158,8 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
                 newPostEl.classList.add("post")
                 newPostEl.setAttribute("post_id", postData.id)
 
-                // Add new post to posts container
                 postsContainer.appendChild(newPostEl)
+                addedPosts.push(postData)
             }, 500);
         }
 
