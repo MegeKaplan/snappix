@@ -32,6 +32,7 @@ const getUserData = async(userID) => {
     return userData
 }
 
+// Like Post
 const likePost = async(userData, targetPostID) => {
     console.log("LIKE:", targetPostID);
 
@@ -80,8 +81,49 @@ const commentPost = async(userData, targetPostID) => {
     console.log("COMMENT:", targetPostID);
 }
 
+// Save Post
 const savePost = async(userData, targetPostID) => {
     console.log("SAVE:", targetPostID);
+
+    // Get Post Data
+    var postData = await getTargetPostData(targetPostID)
+
+    // Get User Data
+    var userData = await getUserData(userData.id)
+
+    // Is it already saved?
+    var isSavedAlready = false
+    userData.saves.forEach(savedPostID => {
+        if(savedPostID==targetPostID){
+            isSavedAlready = true
+        }
+    });
+    if(!isSavedAlready){
+        userData.saves.push(targetPostID)
+        postData.saves.push(userData.id)
+        await updateDoc(doc(db, "users", userData.id), {saves: userData.saves});
+        await updateDoc(doc(db, "posts", postData.id), {saves: postData.saves});
+    }else{
+        // Remove post from user's saves
+        var updatedUserLikes = []
+        userData.saves.forEach(savedPostID => {
+            if(savedPostID!=targetPostID){
+                updatedUserLikes.push(savedPostID)
+            }
+        });
+        await updateDoc(doc(db, "users", userData.id), {saves: updatedUserLikes});
+
+        // Remove user id from post's saves
+        var updatedPostLikes = []
+        postData.saves.forEach(userID => {
+            if(userID!=userData.id){
+                updatedPostLikes.push(userID)
+            }
+        });
+        await updateDoc(doc(db, "posts", postData.id), {saves: updatedPostLikes});
+    }
+    console.log("UD:",userData.saves);
+    console.log("PD:",postData.saves);
 }
 
 

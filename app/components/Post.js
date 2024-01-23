@@ -139,9 +139,9 @@ const postPage = async(userData, postID) => {
 
 
 
-    // Post Operations
+    // Post Operations____________________
+    // Like Post
     setTimeout(() => {
-        // Like Post
         const likeBtns=document.querySelectorAll(".likeBtn")
         likeBtns.forEach(likeBtn => {
             likeBtn.addEventListener("click", (e) => {
@@ -173,9 +173,8 @@ const postPage = async(userData, postID) => {
         })
     }, 500);
 
-    // Post Operations
+    // Comment Post
     setTimeout(() => {
-        // Like Post
         const commentBtns=document.querySelectorAll(".commentBtn")
         commentBtns.forEach(commentBtn => {
             commentBtn.addEventListener("click", (e) => {
@@ -185,14 +184,46 @@ const postPage = async(userData, postID) => {
         })
     }, 500);
     
-    // Post Operations
+    // Save Post
     setTimeout(() => {
-        // Like Post
         const saveBtns=document.querySelectorAll(".saveBtn")
         saveBtns.forEach(saveBtn => {
             saveBtn.addEventListener("click", (e) => {
                 var targetPostID = e.target.getAttribute("post_id")
                 savePost(userData, targetPostID)
+            })
+        })
+    }, 500);
+
+    // Save Post
+    setTimeout(() => {
+        const saveBtns=document.querySelectorAll(".saveBtn")
+        saveBtns.forEach(saveBtn => {
+            saveBtn.addEventListener("click", (e) => {
+                var targetPostID = e.target.getAttribute("post_id")
+                savePost(userData, targetPostID)
+                
+                // Set classes of save btn
+                var isSavedAlready = false
+                e.target.classList.forEach(btnClass => {
+                    if(btnClass=="saved"){
+                        isSavedAlready = true
+                    }
+                });
+                if(!isSavedAlready){
+                    // Increase save count
+                    var oldSaveCount = e.target.nextSibling.nextSibling.innerText
+                    e.target.nextSibling.nextSibling.innerText = Number(oldSaveCount)+1
+                    // Add saved class
+                    e.target.classList.add("saved")
+                }else{
+                    // Decrease save count
+                    var oldSaveCount = e.target.nextSibling.nextSibling.innerText
+                    e.target.nextSibling.nextSibling.innerText = Number(oldSaveCount)-1
+                    // Add saved class
+                    e.target.classList.remove("saved")
+                }
+
             })
         })
     }, 500);
