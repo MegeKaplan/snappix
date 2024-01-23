@@ -6,6 +6,7 @@ import { getFirestore, doc, setDoc, updateDoc, getDoc } from "https://www.gstati
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
 import { profilePage } from "./Profile.js";
+import { editPostPage } from "./EditPost.js";
 
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
@@ -37,8 +38,8 @@ const postPage = async(userData, postID) => {
 
     // Fill post options container
     var myPostOptions = `
-    <li post_id="${postData.id}">Edit Post</li>
-    <li post_id="${postData.id}" class="reportPost">Report Post</li>
+    <li post_id="${postData.id}" class="editPostBtn">Edit Post</li>
+    <li post_id="${postData.id}" class="reportPostBtn">Report Post</li>
     `
     var userPostOptions = `
     <li post_id="${postData.id}" class="reportPost">Report Post</li>
@@ -106,6 +107,15 @@ const postPage = async(userData, postID) => {
         class: "post",
     }
     
+    // Go to edit post page from post options
+    setTimeout(() => {
+        const editPostBtns=document.querySelectorAll(".editPostBtn")
+        editPostBtns.forEach(editPostBtn => {
+            editPostBtn.addEventListener("click", (e) => {
+                editPostPage(userData, e.target.getAttribute("post_id"))
+            })
+        })
+    }, 500);
 
 
     // Go to user's profile

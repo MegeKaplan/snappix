@@ -210,6 +210,12 @@ button i {
   color: #f8f8f8;
   margin-left: 2px;
 }
+button.danger {
+  background: red;
+}
+button.danger:hover {
+  background: #e60000;
+}
 
 a {
   color: #1c5791;
@@ -584,10 +590,6 @@ nav {
 .editPost ul li button {
   margin: 20px;
 }
-.newPost ul li button#deletePostBtn,
-.editPost ul li button#deletePostBtn {
-  background: red;
-}
 
 .post.page .post {
   margin-top: 20px;
@@ -649,12 +651,12 @@ nav {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 15px;
+  padding: 20px;
   transition: 0.3s;
   font-weight: 500;
 }
 .post.page .post .top div i .postOptions li:hover {
-  background: #eef2f3;
+  background: #dfe6e9;
 }
 .post.page .post .top div i .postOptions.userPost {
   display: none;
@@ -813,5 +815,8 @@ nav {
   }
   .profile .info .right section.center {
     justify-content: space-between;
+  }
+  .postOptions {
+    top: 30px !important;
   }
 }/*# sourceMappingURL=pages.css.map */

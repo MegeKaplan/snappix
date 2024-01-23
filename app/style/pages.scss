@@ -222,9 +222,6 @@
             }
             button {
                 margin: 20px;
-                &#deletePostBtn {
-                    background: $danger;
-                }
             }
         }
     }
@@ -285,11 +282,11 @@
                         li{
                             width: 100%;
                             display: flex;align-items: center;justify-content: flex-start;
-                            padding: 15px;
+                            padding: 20px;
                             transition: $transition;
                             font-weight: 500;
                             &:hover{
-                                background: $secondary;
+                                background: darken($color: $secondary, $amount: 5);
                             }
                         }
                     }
@@ -472,5 +469,10 @@
                 }
             }
         }
+    }
+
+    // Post Options Bug Fix For Mobile Devices
+    .postOptions{
+        top: 30px !important;
     }
 }

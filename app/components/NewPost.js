@@ -31,8 +31,13 @@ const newPostPage = (userData) => {
         inner: `
         <ul>
             <li>
-                <span><img id="pageImgEl" src="./imgs/bg_auth.jpg" alt=""></span>
-                <span>Add Photo<input id="postImage" type="file"></span>
+                <span>
+                    <img id="pageImgEl" src="./imgs/add_photo.png" alt="">
+                </span>
+                <span style="display:flex;flex-direction:column;align-items:center;justtify-content:center;">
+                    <input id="postImage" type="file">
+                    <p style="display:flex;flex-direction:row;align-items:center;justtify-content:center;">Add Photo</p>
+                </span>
             </li>
             <li>
                 <span>Post Title</span>

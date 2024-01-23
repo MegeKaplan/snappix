@@ -210,6 +210,12 @@ button i {
   color: #f8f8f8;
   margin-left: 2px;
 }
+button.danger {
+  background: red;
+}
+button.danger:hover {
+  background: #e60000;
+}
 
 a {
   color: #1c5791;

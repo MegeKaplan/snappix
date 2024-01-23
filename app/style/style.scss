@@ -248,6 +248,12 @@ button {
         color: $background;
         margin-left: 2px;
     }
+    &.danger{
+        background: $danger;
+        &:hover {
+            background: darken($color: $danger, $amount: 5);
+        }
+    }
 }
 
 a {
