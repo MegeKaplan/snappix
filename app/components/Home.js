@@ -22,15 +22,19 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-// Create New Post Page
-var pageData = {
-    inner: `
-    <h1>Hello Home Page</h1>
-    `,
-    class: "home",
-}
 
-const homePage = () => {
+const homePage = (userData) => {
+
+    // Create New Post Page
+    var pageData = {
+        inner: `
+        <h1>Hello Home Page</h1>
+        `,
+        class: "home",
+    }
+
+
+
     createPage(pageData)
 }
 
