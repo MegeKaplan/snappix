@@ -136,7 +136,9 @@ const newPostPage = (userData) => {
             // const postValid = true
             if(postValid){
                 await sendPost()
-                await postPage(post.newPost.id)
+                setTimeout(() => {
+                    postPage(newPost.id)
+                }, 500);
             }else{console.log("post sending cancelled!");}
         }
     }, 500);

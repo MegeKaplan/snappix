@@ -63,8 +63,6 @@ const profilePage = async(userData, selectedUserID=userData.id) => {
             }
         });
     });
-    console.log(postCount);
-
     var followerCount = Object.keys(profileUserData.followers).length
     var followingCount = Object.keys(profileUserData.following).length
 
