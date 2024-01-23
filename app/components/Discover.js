@@ -5,6 +5,7 @@ import { getFirestore, doc, setDoc, updateDoc } from "https://www.gstatic.com/fi
 
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
+import { createPosts } from "../js/feed.js";
 
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
@@ -19,15 +20,26 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-// Create New Post Page
-var pageData = {
-    inner: `
-    <h1>Hello Discover Page</h1>
-    `,
-    class: "discover",
-}
 
-const discoverPage = () => {
+
+const discoverPage = (userData) => {
+    // Create New Post Page
+    var pageData = {
+        inner: `
+        <div class="feed" id="feed">
+            
+        </div>
+        `,
+        class: "discover",
+    }
+
+
+    createPosts(userData, 1)
+
+    
+
+
+
     createPage(pageData)
 }
 

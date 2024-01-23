@@ -591,7 +591,15 @@ nav {
   margin: 20px;
 }
 
-.post.page .post {
+.feed {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.post.page .post, .discover .post {
   margin-top: 20px;
   width: clamp(350px, 500px, 90%);
   height: clamp(650px, 800px, 110%);
@@ -602,10 +610,10 @@ nav {
   justify-content: center;
   flex-direction: column;
 }
-.post.page .post.onlyText .top {
+.post.page .post.onlyText .top, .discover .post.onlyText .top {
   border-bottom: #dfe6e9 1px solid;
 }
-.post.page .post .top {
+.post.page .post .top, .discover .post .top {
   width: 100%;
   height: 60px;
   display: flex;
@@ -613,28 +621,28 @@ nav {
   justify-content: space-between;
   padding: 10px 20px;
 }
-.post.page .post .top div {
+.post.page .post .top div, .discover .post .top div {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.post.page .post .top div .pp {
+.post.page .post .top div .pp, .discover .post .top div .pp {
   margin-right: 10px;
 }
-.post.page .post .top div a {
+.post.page .post .top div a, .discover .post .top div a {
   color: #2d3436 !important;
 }
-.post.page .post .top div i {
+.post.page .post .top div i, .discover .post .top div i {
   cursor: pointer;
   position: relative;
 }
-.post.page .post .top div i:hover .postOptions {
+.post.page .post .top div i:hover .postOptions, .discover .post .top div i:hover .postOptions {
   display: flex !important;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.post.page .post .top div i .postOptions {
+.post.page .post .top div i .postOptions, .discover .post .top div i .postOptions {
   list-style: none;
   background: #f8f8f8;
   position: absolute;
@@ -646,7 +654,7 @@ nav {
   overflow: hidden;
   display: none;
 }
-.post.page .post .top div i .postOptions li {
+.post.page .post .top div i .postOptions li, .discover .post .top div i .postOptions li {
   width: 100%;
   display: flex;
   align-items: center;
@@ -655,13 +663,13 @@ nav {
   transition: 0.3s;
   font-weight: 500;
 }
-.post.page .post .top div i .postOptions li:hover {
+.post.page .post .top div i .postOptions li:hover, .discover .post .top div i .postOptions li:hover {
   background: #dfe6e9;
 }
-.post.page .post .top div i .postOptions.userPost {
+.post.page .post .top div i .postOptions.userPost, .discover .post .top div i .postOptions.userPost {
   display: none;
 }
-.post.page .post .imgContainer {
+.post.page .post .imgContainer, .discover .post .imgContainer {
   width: 100%;
   background: linear-gradient(135deg, #0984e3, #d63031);
   padding-bottom: 100%;
@@ -669,23 +677,23 @@ nav {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.post.page .post .imgContainer:hover {
+.post.page .post .imgContainer:hover, .discover .post .imgContainer:hover {
   background-size: 100% 100%;
 }
-.post.page .post .bottom {
+.post.page .post .bottom, .discover .post .bottom {
   width: 95%;
 }
-.post.page .post .bottom .row {
+.post.page .post .bottom .row, .discover .post .bottom .row {
   height: auto;
   min-height: 60px;
   border-bottom: #dfe6e9 1px solid;
 }
-.post.page .post .bottom .row.icons {
+.post.page .post .bottom .row.icons, .discover .post .bottom .row.icons {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
-.post.page .post .bottom .row.icons .icon {
+.post.page .post .bottom .row.icons .icon, .discover .post .bottom .row.icons .icon {
   height: 100%;
   display: flex;
   align-items: center;
@@ -694,30 +702,30 @@ nav {
   font-size: 20px;
   margin-right: 10px;
 }
-.post.page .post .bottom .row.icons .icon i {
+.post.page .post .bottom .row.icons .icon i, .discover .post .bottom .row.icons .icon i {
   margin-right: 10px;
   cursor: pointer;
 }
-.post.page .post .bottom .row.icons .icon i.liked {
+.post.page .post .bottom .row.icons .icon i.liked, .discover .post .bottom .row.icons .icon i.liked {
   color: #d63031;
 }
-.post.page .post .bottom .row.icons .icon i.commented {
+.post.page .post .bottom .row.icons .icon i.commented, .discover .post .bottom .row.icons .icon i.commented {
   color: #0984e3;
 }
-.post.page .post .bottom .row.icons .icon i.saved {
+.post.page .post .bottom .row.icons .icon i.saved, .discover .post .bottom .row.icons .icon i.saved {
   color: #e17055;
 }
-.post.page .post .bottom .row .text {
+.post.page .post .bottom .row .text, .discover .post .bottom .row .text {
   margin: 5px;
 }
-.post.page .post .bottom .row .text .title {
+.post.page .post .bottom .row .text .title, .discover .post .bottom .row .text .title {
   font-size: 18px;
   margin: 2px;
 }
-.post.page .post .bottom .row .text .content {
+.post.page .post .bottom .row .text .content, .discover .post .bottom .row .text .content {
   margin-bottom: 5px;
 }
-.post.page .post .bottom .row .text .sendDate {
+.post.page .post .bottom .row .text .sendDate, .discover .post .bottom .row .text .sendDate {
   color: #738489;
   font-size: 16px;
 }
