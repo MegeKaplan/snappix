@@ -698,13 +698,13 @@ nav {
   margin-right: 10px;
   cursor: pointer;
 }
-.post.page .post .bottom .row.icons .icon.liked i {
+.post.page .post .bottom .row.icons .icon i.liked {
   color: #d63031;
 }
-.post.page .post .bottom .row.icons .icon.commented i {
+.post.page .post .bottom .row.icons .icon i.commented {
   color: #0984e3;
 }
-.post.page .post .bottom .row.icons .icon.saved i {
+.post.page .post .bottom .row.icons .icon i.saved {
   color: #e17055;
 }
 .post.page .post .bottom .row .text {

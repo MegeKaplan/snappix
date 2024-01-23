@@ -148,12 +148,26 @@ const postPage = async(userData, postID) => {
                 var targetPostID = e.target.getAttribute("post_id")
                 likePost(userData, targetPostID)
                 
-                // Get classes of like btn
-                
-
-                // Render
-                var oldLikeCount = e.target.nextSibling.nextSibling.innerText
-                e.target.nextSibling.nextSibling.innerText = Number(oldLikeCount)+1
+                // Set classes of like btn
+                var isLikedAlready = false
+                e.target.classList.forEach(btnClass => {
+                    if(btnClass=="liked"){
+                        isLikedAlready = true
+                    }
+                });
+                if(!isLikedAlready){
+                    // Increase like count
+                    var oldLikeCount = e.target.nextSibling.nextSibling.innerText
+                    e.target.nextSibling.nextSibling.innerText = Number(oldLikeCount)+1
+                    // Add liked class
+                    e.target.classList.add("liked")
+                }else{
+                    // Decrease like count
+                    var oldLikeCount = e.target.nextSibling.nextSibling.innerText
+                    e.target.nextSibling.nextSibling.innerText = Number(oldLikeCount)-1
+                    // Add liked class
+                    e.target.classList.remove("liked")
+                }
 
             })
         })

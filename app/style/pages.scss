@@ -329,21 +329,9 @@
                         i {
                             margin-right: 10px;
                             cursor: pointer;
-                        }
-                        &.liked {
-                            i {
-                                color: $liked;
-                            }
-                        }
-                        &.commented {
-                            i {
-                                color: $commented;
-                            }
-                        }
-                        &.saved {
-                            i {
-                                color: $saved;
-                            }
+                            &.liked{color: $liked;}
+                            &.commented{color: $commented;}
+                            &.saved{color: $saved;}
                         }
                     }
                 }
