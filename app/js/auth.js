@@ -83,6 +83,7 @@ try{
                     profilePictureURL: "./imgs/pp/pp_default.png",
                     profilePictureName: "profilePicture",
                     description: "",
+                    postsSeen: [],
                 }
     
                 // Add to Firestore

@@ -7,6 +7,7 @@ import { getFirestore, doc, setDoc, updateDoc, getDoc } from "https://www.gstati
 import { createPage } from "../js/createPage.js";
 import { profilePage } from "./Profile.js";
 import { editPostPage } from "./EditPost.js";
+import { commentPost, likePost, savePost } from "../js/postOperations.js";
 
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
@@ -81,16 +82,16 @@ const postPage = async(userData, postID) => {
             <div class="bottom">
                 <div class="row icons">
                     <div class="icon">
-                        <i class="fa-solid fa-heart"></i>
-                        <span>${Object.keys(postData.likes).length}</span>
+                        <i class="fa-solid fa-heart likeBtn" post_id="${postData.id}"></i>
+                        <span class="likeCount">${Object.keys(postData.likes).length}</span>
                     </div>
                     <div class="icon">
-                        <i class="fa-solid fa-comment"></i>
-                        <span>${Object.keys(postData.comments).length}</span>
+                        <i class="fa-solid fa-comment commentBtn" post_id="${postData.id}"></i>
+                        <span class="commentCount">${Object.keys(postData.comments).length}</span>
                     </div>
                     <div class="icon">
-                        <i class="fa-solid fa-bookmark"></i>
-                        <span>${Object.keys(postData.saves).length}</span>
+                        <i class="fa-solid fa-bookmark saveBtn" post_id="${postData.id}"></i>
+                        <span class="saveCount">${Object.keys(postData.saves).length}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -134,6 +135,53 @@ const postPage = async(userData, postID) => {
     }, 1500);
 
     // console.log(postData);
+
+
+
+
+    // Post Operations
+    setTimeout(() => {
+        // Like Post
+        const likeBtns=document.querySelectorAll(".likeBtn")
+        likeBtns.forEach(likeBtn => {
+            likeBtn.addEventListener("click", (e) => {
+                var targetPostID = e.target.getAttribute("post_id")
+                likePost(userData, targetPostID)
+                
+                // Get classes of like btn
+                
+
+                // Render
+                var oldLikeCount = e.target.nextSibling.nextSibling.innerText
+                e.target.nextSibling.nextSibling.innerText = Number(oldLikeCount)+1
+
+            })
+        })
+    }, 500);
+
+    // Post Operations
+    setTimeout(() => {
+        // Like Post
+        const commentBtns=document.querySelectorAll(".commentBtn")
+        commentBtns.forEach(commentBtn => {
+            commentBtn.addEventListener("click", (e) => {
+                var targetPostID = e.target.getAttribute("post_id")
+                commentPost(userData, targetPostID)
+            })
+        })
+    }, 500);
+    
+    // Post Operations
+    setTimeout(() => {
+        // Like Post
+        const saveBtns=document.querySelectorAll(".saveBtn")
+        saveBtns.forEach(saveBtn => {
+            saveBtn.addEventListener("click", (e) => {
+                var targetPostID = e.target.getAttribute("post_id")
+                savePost(userData, targetPostID)
+            })
+        })
+    }, 500);
 
 
 

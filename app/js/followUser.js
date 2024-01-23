@@ -25,6 +25,7 @@ const followUser = async(userData, userIdToFollow) => {
     // Log
     // console.log(userData.id, userIdToFollow);
     
+    // Redefine User for Bug Fix
     var docSnap = await getDoc(doc(db, "users", userData.id))
     var userData = docSnap.data()
 
