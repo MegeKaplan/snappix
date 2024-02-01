@@ -67,7 +67,7 @@ const searchPage = async(userData) => {
                     if(user.id == followedUserID){
                         amIFollowing = true
                         followBtnClass = "active"
-                        followBtnInner = "Followed"
+                        followBtnInner = "Following"
                     }
                 });
 

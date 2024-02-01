@@ -136,6 +136,7 @@ const newPostPage = (userData) => {
             // const postValid = true
             if(postValid){
                 await sendPost()
+                await postPage(newPost.id)
                 setTimeout(() => {
                     postPage(newPost.id)
                 }, 500);

@@ -36,6 +36,8 @@ const getUserData = async(userID) => {
 const likePost = async(userData, targetPostID) => {
     console.log("LIKE:", targetPostID);
 
+    console.log(userData);
+
     // Get Post Data
     var postData = await getTargetPostData(targetPostID)
 

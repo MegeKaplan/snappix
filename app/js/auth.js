@@ -6,6 +6,9 @@ import { getFirestore, doc, setDoc, updateDoc } from "https://www.gstatic.com/fi
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
 
+// Import Local Modules
+import { validate } from "./validate.js";
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
@@ -33,7 +36,6 @@ const getFormData = () => {
 var defaultErrMsg = "Something went wrong! Please check your information again."
 var errors = []
 const showErrMsgs = (errors) => {
-    console.log(errors);
     var errorsContainer = document.querySelector("#errors")
     errorsContainer.innerHTML = ""
     errors.forEach(error => {
@@ -57,9 +59,34 @@ try{
         var username = getFormData().username
         var password = getFormData().password
 
-        // Username Validation
-        var usernameValid = confirm(`Should your username be ${username}?`)
-        if(usernameValid){
+        // Validation
+        // var isValidData = confirm(`Should your username be ${username}?`)
+        var isValidData = false
+
+        errors = []
+
+        var emailValid = validate(email, "email", 5, 20)
+        var usernameValid = validate(username, "username", 5, 18)
+        var passwordValid = validate(password, "password", 5, 40)
+        if(emailValid!=true){
+            errors.push(emailValid)
+            showErrMsgs(errors)
+            errors = []
+        }
+        if(!usernameValid){
+            errors.push(passwordValid)
+            showErrMsgs(errors)
+            errors = []
+        }
+        if(!passwordValid){
+            errors.push(passwordValid)
+            showErrMsgs(errors)
+            errors = []
+        }
+
+        console.log(errors);
+        
+        if(isValidData){
             // Register
             createUserWithEmailAndPassword(auth, email, password)
             .then(async(userCredential) => {
@@ -84,6 +111,9 @@ try{
                     profilePictureName: "profilePicture",
                     description: "",
                     postsSeen: [],
+                    likes: [],
+                    comments: [],
+                    saves: [],
                 }
     
                 // Add to Firestore

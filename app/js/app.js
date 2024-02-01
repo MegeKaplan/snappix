@@ -135,9 +135,20 @@ onAuthStateChanged(auth, async(user) => {
                 `
                 newSuggestionEl.classList.add("suggestion")
 
+                // Is there user in my following?
+                var isThereUser = true
+
                 if(user.id != userData.id){
-                    // Add suggestion
-                    suggestionsContainer.appendChild(newSuggestionEl)
+                  userData.following.forEach(userID => {
+                    if(user.id != userID){
+                        isThereUser = false
+                    }
+                  });
+                }
+
+                // Add suggestion
+                if(!isThereUser){
+                  suggestionsContainer.appendChild(newSuggestionEl)
                 }
             });
         }
