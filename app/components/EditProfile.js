@@ -6,6 +6,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstati
 
 // Import Local Modules and Components
 import { createPage } from "../js/createPage.js";
+import { homePage } from "../components/Home.js"
 
 // Firebase Config
 import { firebaseConfig } from "../db/config.js";
@@ -171,6 +172,7 @@ const editProfilePage = (userData) => {
         const saveChangesBtn = document.querySelector("#saveChangesBtn")
         saveChangesBtn.onclick = () => {
             saveChanges()
+            window.location.href = "./index.html"
         }
     }, 500);
 

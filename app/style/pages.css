@@ -36,6 +36,7 @@ nav.side a {
 }
 
 aside {
+  display: none;
   position: absolute;
   right: 20px;
   top: 50%;

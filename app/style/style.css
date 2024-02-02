@@ -80,7 +80,7 @@ aside ul li section {
 aside ul li section.left .pp {
   height: 50px;
   width: 50px;
-  background: #000;
+  background: linear-gradient(135deg, #0984e3, #d63031);
   overflow: hidden;
   border-radius: 50%;
   margin-right: 10px;
@@ -329,8 +329,8 @@ nav {
     left: 0;
     padding: 0;
     transform: none;
-    width: 100vw;
     height: calc(100vh - 120px - 70px);
+    width: 100vw !important;
     border: none;
     border-radius: 0;
   }
@@ -352,7 +352,7 @@ nav {
     font-size: 30px !important;
   }
   main {
-    width: 50vw;
+    width: 50vw !important;
   }
 }
 @media only screen and (max-width: 800px) and (min-width: 600px) {
@@ -365,4 +365,12 @@ nav {
   main {
     width: 80vw !important;
   }
+}
+aside {
+  display: none !important;
+}
+
+main {
+  width: 85vw;
+  display: flex;
 }/*# sourceMappingURL=style.css.map */

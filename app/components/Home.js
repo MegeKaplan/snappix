@@ -36,7 +36,9 @@ const homePage = (userData) => {
         class: "home",
     }
 
-    createPosts(userData, 1)
+    setTimeout(() => {
+        createPosts(userData, 1)
+    }, 500);
 
 
     createPage(pageData)

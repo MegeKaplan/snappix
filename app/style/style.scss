@@ -103,7 +103,7 @@ aside {
                     .pp {
                         height: 50px;
                         width: 50px;
-                        background: #000;
+                        background: $loading-bg;
                         overflow: hidden;
                         border-radius: 50%;
                         margin-right: 10px;
@@ -373,8 +373,8 @@ nav {
         left: 0;
         padding: 0;
         transform: none;
-        width: 100vw;
         height: calc(100vh - 120px - 70px);
+        width: 100vw !important;
         border: none;
         border-radius: 0;
     }
@@ -397,7 +397,7 @@ nav {
         font-size: 30px !important;
     }
     main {
-        width: 50vw;
+        width: 50vw !important;
     }
 }
 
@@ -412,4 +412,17 @@ nav {
     main {
         width: 80vw !important;
     }
+}
+
+
+
+
+// Dev
+aside{
+    display: none !important;
+}
+
+main{
+    width: 85vw;
+    display: flex;
 }
