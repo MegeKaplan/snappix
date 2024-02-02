@@ -61,7 +61,7 @@ try{
 
         // Validation
         // var isValidData = confirm(`Should your username be ${username}?`)
-        var isValidData = false
+        var isValidData = true
 
         errors = []
 
