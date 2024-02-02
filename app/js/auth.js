@@ -60,8 +60,8 @@ try{
         var password = getFormData().password
 
         // Validation
-        // var isValidData = confirm(`Should your username be ${username}?`)
-        var isValidData = true
+        // var isValidData = false
+        var isValidData = confirm(`Should your username be ${username}?`)
 
         errors = []
 
