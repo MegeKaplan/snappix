@@ -172,7 +172,9 @@ const editProfilePage = (userData) => {
         const saveChangesBtn = document.querySelector("#saveChangesBtn")
         saveChangesBtn.onclick = () => {
             saveChanges()
-            window.location.href = "./index.html"
+            setTimeout(() => {
+                window.location.href = "./index.html"
+            }, 500);
         }
     }, 500);
 
